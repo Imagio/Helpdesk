@@ -25,6 +25,12 @@ namespace Imagio.Helpdesk.Model
         /// Пароль
         /// </summary>
         [Required]
-        public byte[] Password { get; set; }
+        public Byte[] Password { get; set; }
+
+        /// <summary>
+        /// Активная учетная запись
+        /// </summary>
+        [Required]
+        public Boolean IsActive { get; set; }
     }
 }
