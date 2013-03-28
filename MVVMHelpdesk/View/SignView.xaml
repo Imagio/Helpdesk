@@ -1,0 +1,46 @@
+﻿<Window x:Class="Imagio.Helpdesk.View.SignView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"                  
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+        WindowStyle="SingleBorderWindow" ResizeMode="NoResize" MouseDown="Window_MouseDown"
+        Icon="/MVVMHelpdesk;component/Images/lock.png" Title="Вход в систему">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding ShutdownCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <StackPanel Orientation="Vertical" Width="300" Margin="10 10 10 10">
+        <StackPanel Orientation="Horizontal">
+            <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
+            <Label  Content="Имя пользователя" />
+        </StackPanel>
+        <TextBox Margin="0 0 0 5" Padding="3" Text="{Binding Path=Login}" />
+        <StackPanel Orientation="Horizontal">
+            <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/key.png" />
+            <Label Content="Пароль" />
+        </StackPanel>
+        <PasswordBox Margin="0 0 0 5" Padding="3" PasswordChanged="PasswordBox_PasswordChanged" />
+        <Expander Header="Настрайка подключения" Margin="0 0 0 5" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/database.png" />
+                <Label Grid.Column="1" Content="База данных" />
+                <TextBox Grid.Column="2" VerticalAlignment="Center" Text="{Binding Path=DatabasePath}" />
+                <Button Grid.Column="3" Content="..." Margin="3 0 0 0" Padding="6 1"
+                        Command="{Binding ChangeDatabasePathCommand}" VerticalAlignment="Center"/>
+            </Grid>
+        </Expander>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Вход" Padding="20 5" Command="{Binding Path=CheckSignCommand}" />
+        </StackPanel>
+    </StackPanel>
+    
+</Window>
