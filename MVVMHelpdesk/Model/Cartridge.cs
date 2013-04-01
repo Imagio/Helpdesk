@@ -7,9 +7,9 @@ using System.Text;
 namespace Imagio.Helpdesk.Model
 {
     /// <summary>
-    /// Программное обеспечение
+    /// Картридж
     /// </summary>
-    internal class Software
+    internal class Cartridge
     {
         [Key]
         public Guid Id { get; set; }
@@ -21,13 +21,18 @@ namespace Imagio.Helpdesk.Model
         public String Name { get; set; }
 
         /// <summary>
-        /// Ответственный специалист
+        /// Тип картриджа
         /// </summary>
-        public Employee Master { get; set; }
+        public CartridgeType CartridgeType { get; set; }
 
         /// <summary>
         /// Производитель
         /// </summary>
         public Firm Maker { get; set; }
+
+        /// <summary>
+        /// Ответственный специалист
+        /// </summary>
+        public Employee Master { get; set; }
     }
 }

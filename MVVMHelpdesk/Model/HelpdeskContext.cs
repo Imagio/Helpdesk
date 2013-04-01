@@ -6,16 +6,16 @@ using System.Text;
 
 namespace Imagio.Helpdesk.Model
 {
-    public class HelpdeskContext: DbContext
+    internal class HelpdeskContext: DbContext, IHelpdeskContext
     {
         /// <summary>
         /// Сотрудники
         /// </summary>
-        DbSet<Employee> EmployeeSet { get; set; }
+        public DbSet<Employee> EmployeeSet { get; set; }
 
         /// <summary>
         /// Аккаунты
         /// </summary>
-        DbSet<Account> AccountSet { get; set; }
+        public DbSet<Account> AccountSet { get; set; }
     }
 }

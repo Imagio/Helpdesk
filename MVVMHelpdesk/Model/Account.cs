@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -32,5 +33,17 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         public Boolean IsActive { get; set; }
+
+        /// <summary>
+        /// Строковое представление хэша пароля
+        /// </summary>
+        [NotMapped]
+        public String PasswordString
+        {
+            get
+            {
+                return System.Text.Encoding.ASCII.GetString(Password);
+            }
+        }
     }
 }

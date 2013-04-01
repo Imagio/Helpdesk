@@ -69,10 +69,17 @@
     </ApplicationDefinition>
     <Compile Include="Events\SignedEventArgs.cs" />
     <Compile Include="Model\Account.cs" />
+    <Compile Include="Model\Cartridge.cs" />
+    <Compile Include="Model\CartridgeType.cs" />
+    <Compile Include="Model\Consumable.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Firm.cs" />
     <Compile Include="Model\Hardware.cs" />
+    <Compile Include="Model\HardwareType.cs" />
     <Compile Include="Model\HelpdeskContext.cs" />
+    <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
+    <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
