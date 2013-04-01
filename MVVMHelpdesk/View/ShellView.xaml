@@ -1,8 +1,17 @@
-﻿<Window x:Class="Imagio.Helpdesk.View.ShellView"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        xmlns:ViewModel="clr-namespace:Imagio.Helpdesk.ViewModel" x:Class="Imagio.Helpdesk.View.ShellView"
+        Title="MainWindow" WindowState="Maximized" Background="#EFEFF2">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MVVMHelpdesk;component/Resources/Menu.xaml"  />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -10,7 +19,52 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <Window.DataContext>
+        <ViewModel:ShellViewModel/>
+    </Window.DataContext>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Menu Style="{DynamicResource TopMenu}">
+            <MenuItem Header="Справочники">
+                <MenuItem Header="Программное обеспечение" IsCheckable="True">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/software.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Оборудование" IsCheckable="True">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/hardware.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Расходные материалы" IsCheckable="True">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Картриджы" IsCheckable="True">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1"
+                    ItemsSource="{Binding Path=WorkspaceCollection}">
+            <TabControl.ItemTemplate>
+                <DataTemplate >
+                    <TextBlock Text="{Binding Path=Label}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
     </Grid>
 </Window>

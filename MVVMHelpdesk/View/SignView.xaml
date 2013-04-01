@@ -12,7 +12,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <StackPanel Orientation="Vertical" Width="300" Margin="10 10 10 10">
+    <StackPanel Orientation="Vertical" Width="300" Margin="20">
         <StackPanel Orientation="Horizontal">
             <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
             <Label  Content="Имя пользователя" />

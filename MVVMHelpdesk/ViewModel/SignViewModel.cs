@@ -69,9 +69,31 @@ namespace Imagio.Helpdesk.ViewModel
                 _checkSignCommand = _checkSignCommand ?? new RelayCommand(
                     () =>
                     {
-                        var account = new Account();
-                        if (Signed != null)
-                            Signed(this, new SignedEventArgs(account));
+                        if (String.IsNullOrEmpty(_login) || String.IsNullOrEmpty(_password))
+                        {
+                            if (Signed != null)
+                                Signed(this, new SignedEventArgs(null));
+                            return;
+                        }
+
+                        using (var context = new FakeContext())
+                        {
+                            Account account = null;
+                            try
+                            {
+                                account = context.AccountSet.Local.Single(w => w.Login == _login);
+                                var pwd = Hash.ToString(account.Password);
+                                var pwd_check = Hash.ToString(_password);
+
+                                account = pwd == pwd_check ? account : null;
+                            }
+                            catch
+                            {
+
+                            }
+                            if (Signed != null)
+                                Signed(this, new SignedEventArgs(account));
+                        }
                     });
                 return _checkSignCommand;
             }

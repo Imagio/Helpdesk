@@ -42,7 +42,12 @@ namespace Imagio.Helpdesk.Model
         {
             get
             {
-                return System.Text.Encoding.ASCII.GetString(Password);
+                var sb = new StringBuilder("*");
+                foreach (var b in Password)
+                {
+                    sb.AppendFormat("{0:x2}", b);
+                }
+                return sb.ToString().ToUpper();
             }
         }
     }

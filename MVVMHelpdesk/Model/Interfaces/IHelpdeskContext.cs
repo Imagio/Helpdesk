@@ -8,7 +8,14 @@ namespace Imagio.Helpdesk.Model
 {
     internal interface IHelpdeskContext
     {
-        DbSet<Employee> EmployeeSet { get; set; }
-        DbSet<Account> AccountSet { get; set; }
+        /// <summary>
+        /// Список сотрудников
+        /// </summary>
+        DbSet<Employee> EmployeeSet { get; }
+
+        /// <summary>
+        /// Список учетных записей
+        /// </summary>
+        DbSet<Account> AccountSet { get; }
     }
 }

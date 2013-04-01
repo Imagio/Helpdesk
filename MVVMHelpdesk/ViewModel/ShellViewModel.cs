@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,10 @@ namespace Imagio.Helpdesk.ViewModel
     {
         public ShellViewModel()
         {
+            WorkspaceCollection = new ObservableCollection<Workspace>();
+            WorkspaceCollection.Add(new Workspace { Label = "Test" });
         }
+
+        public ObservableCollection<Workspace> WorkspaceCollection { get; private set; }
     }
 }

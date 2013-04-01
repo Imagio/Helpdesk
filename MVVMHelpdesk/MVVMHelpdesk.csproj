@@ -73,6 +73,7 @@
     <Compile Include="Model\CartridgeType.cs" />
     <Compile Include="Model\Consumable.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\FakeContext.cs" />
     <Compile Include="Model\Firm.cs" />
     <Compile Include="Model\Hardware.cs" />
     <Compile Include="Model\HardwareType.cs" />
@@ -80,12 +81,18 @@
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />
+    <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
+    <Compile Include="ViewModel\Workspace.cs" />
     <Compile Include="View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,7 +144,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Images\software.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\user.png" />
@@ -146,6 +153,16 @@
     <Resource Include="Images\database.png" />
     <Resource Include="Images\key.png" />
     <Resource Include="Images\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hardware.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\library.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\item.png" />
+    <Resource Include="Images\printer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
