@@ -11,11 +11,11 @@ namespace Imagio.Helpdesk.Model
         /// <summary>
         /// Список сотрудников
         /// </summary>
-        DbSet<Employee> EmployeeSet { get; }
+        DbSet<Employee> Employees { get; }
 
         /// <summary>
         /// Список учетных записей
         /// </summary>
-        DbSet<Account> AccountSet { get; }
+        DbSet<Account> Accounts { get; }
     }
 }

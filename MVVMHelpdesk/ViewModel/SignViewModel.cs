@@ -81,7 +81,7 @@ namespace Imagio.Helpdesk.ViewModel
                             Account account = null;
                             try
                             {
-                                account = context.AccountSet.Local.Single(w => w.Login == _login);
+                                account = context.Accounts.Local.Single(w => w.Login == _login);
                                 var pwd = Hash.ToString(account.Password);
                                 var pwd_check = Hash.ToString(_password);
 
