@@ -23,9 +23,9 @@ namespace Imagio.Helpdesk
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var context = new Imagio.Helpdesk.Model.HelpdeskContext();
+            /*var context = new Imagio.Helpdesk.Model.HelpdeskContext();
             context.Database.CreateIfNotExists();
-            context.SaveChanges();
+            context.SaveChanges();*/
 
             base.OnStartup(e);
 

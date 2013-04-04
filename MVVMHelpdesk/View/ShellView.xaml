@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/MVVMHelpdesk;component/Resources/Menu.xaml"  />
+                <ResourceDictionary Source="/MVVMHelpdesk;component/Resources/TabControl.xaml"  />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -30,13 +31,13 @@
         </Grid.RowDefinitions>
 
         <Menu Style="{DynamicResource TopMenu}">
-            <MenuItem Header="Справочники">
+            <MenuItem Header="Оборудование">
                 <MenuItem Header="Программное обеспечение" IsCheckable="True">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/software.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Оборудование" IsCheckable="True">
+                <MenuItem Header="Аппаратное обеспечение" IsCheckable="True">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/hardware.png" />
                     </MenuItem.Icon>
@@ -51,6 +52,9 @@
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
                 </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Администрирование">
+                <MenuItem Header="" />
             </MenuItem>
         </Menu>
         <TabControl Grid.Row="1"

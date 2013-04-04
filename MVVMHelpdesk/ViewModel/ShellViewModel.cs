@@ -15,7 +15,17 @@ namespace Imagio.Helpdesk.ViewModel
         public ShellViewModel()
         {
             WorkspaceCollection = new ObservableCollection<Workspace>();
-            WorkspaceCollection.Add(new Workspace { Label = "Test" });
+            for (int i = 0; i < 45; i++)
+            {
+                var w = new Workspace { Label = "Test" + i.ToString() };
+                WorkspaceCollection.Add(w);
+                w.CloseTabClick += w_CloseTabClick;
+            }
+        }
+
+        void w_CloseTabClick(object sender)
+        {
+            WorkspaceCollection.Remove(sender as Workspace);
         }
 
         public ObservableCollection<Workspace> WorkspaceCollection { get; private set; }
