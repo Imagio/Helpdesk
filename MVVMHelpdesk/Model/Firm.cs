@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Производитель
     /// </summary>
-    internal class Firm
+    public class Firm
     {
         [Key]
         [Required]

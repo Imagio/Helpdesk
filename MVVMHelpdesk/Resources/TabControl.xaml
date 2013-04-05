@@ -7,7 +7,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabControl}">
-                    <Grid KeyboardNavigation.TabNavigation="Local">
+                    <Border Padding="5">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
+                                <GradientStop Offset="0" Color="#293955" />
+                                <GradientStop Offset="0.5" Color="#35496A" />
+                                <GradientStop Offset="1" Color="#293955" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid KeyboardNavigation.TabNavigation="Local">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
@@ -15,24 +23,20 @@
                         <TabPanel Name="HeaderPanel"
                                     Grid.Row="0"
                                     Panel.ZIndex="1" 
-                                    Margin="0,0,4,-1" 
+                                    Margin="0" 
                                     IsItemsHost="True"
                                     KeyboardNavigation.TabIndex="1"
                                     Background="Transparent" />
-                        <Border Name="Border" 
+                            <Border Name="Border" 
                                 Grid.Row="1" 
-                                Background="White" 
-                                BorderThickness="0 2 0 0" 
-                                BorderBrush="#007ACC"
-                                CornerRadius="0" 
                                 KeyboardNavigation.TabNavigation="Local"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
                                 KeyboardNavigation.TabIndex="2" >
-                            <ContentPresenter Name="PART_SelectedContentHost"
-                                              Margin="4"
+                                <ContentPresenter Name="PART_SelectedContentHost"
                                               ContentSource="SelectedContent" />
                         </Border>
                     </Grid>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -42,21 +46,24 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="UseLayoutRounding" Value="False" />
+        <Setter Property="Foreground" Value="#75633D" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="bd" Background="Transparent">
-                        <Path x:Name="path" Margin="3" Stroke="#D0E6F5" StrokeThickness="1.5"
+                    <Border x:Name="bd" Background="Transparent" BorderThickness="1">
+                        <Path x:Name="path" Margin="3" Stroke="{TemplateBinding Foreground}" StrokeThickness="1.5"
                               Data="M1 0 L9 8 M9 0 L1 8"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="bd" Property="Background" Value="#52B0EF" />
-                            <Setter TargetName="path" Property="Stroke" Value="#FFF" />
+                            <Setter TargetName="bd" Property="Background" Value="#FFFCF4" />
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#E5C365" />
+                            <Setter Property="Foreground" Value="#000000" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="bd" Property="Background" Value="#0E6198" />
-                            <Setter TargetName="path" Property="Stroke" Value="#FFF" />
+                            <Setter TargetName="bd" Property="Background" Value="#FFE8A6" />
+                            <Setter TargetName="bd" Property="BorderBrush" Value="#E5C365" />
+                            <Setter Property="Foreground" Value="#000000" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -66,7 +73,7 @@
     
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#1E1E1E" />
+        <Setter Property="Foreground" Value="#FFFFFF" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
@@ -77,17 +84,18 @@
                                 Background="{TemplateBinding Property=Background}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter x:Name="ContentSite" 
+                                                   MaxWidth="150"
                                                   VerticalAlignment="Center"
                                                   HorizontalAlignment="Center"
                                                   ContentSource="Header"
                                                   RecognizesAccessKey="True"/>
                                 <Button Grid.Column="1" Style="{StaticResource ResourceKey=CloseTabButtonStyle}"
                                         Command="{Binding Path=CloseTabCommand}"
-                                        VerticalAlignment="Center" Margin="4 0 0 0" Visibility="Hidden" x:Name="btn"/>
+                                        VerticalAlignment="Center" Margin="3 0 0 0" Visibility="Hidden" x:Name="btn"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -95,6 +103,7 @@
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Panel.ZIndex" Value="100" />
                             <Setter TargetName="btn" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ContentSite" Property="MaxWidth" Value="Infinity" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="btn" Property="Visibility" Value="Visible" />
@@ -105,12 +114,12 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#1C97EA" />
+                <Setter Property="Background" Value="#4B5C74" />
                 <Setter Property="Foreground" Value="White" />
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="#007ACC" />
-                <Setter Property="Foreground" Value="White" />
+                <Setter Property="Background" Value="#FFF0D0" />
+                <Setter Property="Foreground" Value="#000" />
             </Trigger>
         </Style.Triggers>
     </Style>

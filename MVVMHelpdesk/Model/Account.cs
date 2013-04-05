@@ -10,7 +10,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Аккаунт пользователя
     /// </summary>
-    internal class Account
+    public class Account
     {
         [Key]
         public Guid Id { get; set; }

@@ -96,19 +96,41 @@
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />
+    <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
+    <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
+    <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
-    <Compile Include="ViewModel\Workspace.cs" />
+    <Compile Include="ViewModel\TabViewModel.cs" />
+    <Compile Include="ViewModel\Workspace\Workspace.cs" />
+    <Compile Include="View\Entity\SoftwareView.xaml.cs">
+      <DependentUpon>SoftwareView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\WorkspaceToolsView.xaml.cs">
+      <DependentUpon>WorkspaceToolsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\TabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ToolButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\EntityViewSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\SoftwareView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,6 +149,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\SignView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\WorkspaceToolsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +214,10 @@
     <Content Include="Data.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\create.png" />
+    <Resource Include="Images\refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

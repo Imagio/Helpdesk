@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:entityViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Entity"
+                    xmlns:entityView="clr-namespace:Imagio.Helpdesk.View.Entity">
+    
+    <DataTemplate DataType="{x:Type entityViewModel:SoftwareViewModel}">
+        <entityView:SoftwareView />
+    </DataTemplate>
+    
+</ResourceDictionary>

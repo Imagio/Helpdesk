@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Imagio.Helpdesk.Model
 {
-    internal class FakeContext: DbContext, IHelpdeskContext
+    public class FakeContext: DbContext, IHelpdeskContext
     {
         public FakeContext()
         {

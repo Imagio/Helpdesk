@@ -2,7 +2,7 @@
 
 namespace Imagio.Helpdesk.Model
 {
-    internal class HelpdeskContext: DbContext, IHelpdeskContext
+    public class HelpdeskContext: DbContext, IHelpdeskContext
     {
         /// <summary>
         /// Аккаунты

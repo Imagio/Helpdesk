@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Тип оборудования
     /// </summary>
-    internal class HardwareType
+    public class HardwareType
     {
         [Key]
         [Required]

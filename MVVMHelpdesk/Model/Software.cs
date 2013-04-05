@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Программное обеспечение
     /// </summary>
-    internal class Software
+    public class Software
     {
         [Key]
         public Guid Id { get; set; }
@@ -18,16 +18,19 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
+        [Display(Name="Наименование")]
         public String Name { get; set; }
 
         /// <summary>
         /// Ответственный специалист
         /// </summary>
+        [Display(Name="Ответственный специалист")]
         public Employee Master { get; set; }
 
         /// <summary>
         /// Производитель
         /// </summary>
+        [Display(Name = "Производитель")]
         public Firm Maker { get; set; }
     }
 }

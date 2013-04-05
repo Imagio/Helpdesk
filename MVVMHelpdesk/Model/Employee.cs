@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Сотрудник
     /// </summary>
-    internal class Employee
+    public class Employee
     {
         [Key]
         public Guid Id { get; set; }

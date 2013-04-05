@@ -4,7 +4,8 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"                  
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
         WindowStyle="SingleBorderWindow" ResizeMode="NoResize" MouseDown="Window_MouseDown"
-        Icon="/MVVMHelpdesk;component/Images/lock.png" Title="Вход в систему">
+        Icon="/MVVMHelpdesk;component/Images/lock.png" Title="Вход в систему"
+        Background="#F0F0F0">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">

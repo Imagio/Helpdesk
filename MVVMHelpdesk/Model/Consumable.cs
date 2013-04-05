@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Расходный материал
     /// </summary>
-    internal class Consumable
+    public class Consumable
     {
         [Key]
         public Guid Id { get; set; }

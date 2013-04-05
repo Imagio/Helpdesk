@@ -1,9 +1,12 @@
-﻿<Window
+﻿<Window x:Class="Imagio.Helpdesk.View.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:ViewModel="clr-namespace:Imagio.Helpdesk.ViewModel" x:Class="Imagio.Helpdesk.View.ShellView"
-        Title="MainWindow" WindowState="Maximized" Background="#EFEFF2">
+        xmlns:ViewModel="clr-namespace:Imagio.Helpdesk.ViewModel" 
+        xmlns:workspaceViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Workspace" 
+        xmlns:workspaceView="clr-namespace:Imagio.Helpdesk.View.Workspace"
+        xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper" 
+        Title="MainWindow" WindowState="Maximized" Background="#D6DBE9">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -27,12 +30,14 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Menu Style="{DynamicResource TopMenu}">
+        <Menu Style="{DynamicResource TopMenu}" Margin="2 2 2 0">
             <MenuItem Header="Оборудование">
-                <MenuItem Header="Программное обеспечение" IsCheckable="True">
+                <MenuItem Header="Программное обеспечение" IsCheckable="True" Command="{Binding Path=SoftwareMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/software.png" />
                     </MenuItem.Icon>
@@ -57,18 +62,36 @@
                 <MenuItem Header="" />
             </MenuItem>
         </Menu>
-        <TabControl Grid.Row="1"
-                    ItemsSource="{Binding Path=WorkspaceCollection}">
+        <ContentControl Grid.Row="1" Content="{Binding Path=CurrentTab.ViewModel}" Margin="10 2">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type workspaceViewModel:Workspace}">
+                    <workspaceView:WorkspaceToolsView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type helperViewModel:ViewModelBase}" />
+            </ContentControl.Resources>
+        </ContentControl>
+        <TabControl Grid.Row="2" ItemsSource="{Binding TabCollection}" SelectedItem="{Binding CurrentTab}">
+            <TabControl.Resources>
+                
+            </TabControl.Resources>
             <TabControl.ItemTemplate>
                 <DataTemplate >
-                    <TextBlock Text="{Binding Path=Label}" />
+                    <TextBlock Text="{Binding Label, Mode=OneWay}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
                 <DataTemplate>
-                    <ContentControl Content="{Binding}" />
+                    <Border BorderThickness="0 2 0 0" BorderBrush="#FFF0D0"
+                            Background="#FFF" Padding="4">
+                        <ContentControl Content="{Binding ViewModel, Mode=OneWay}" />
+                    </Border>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
+        <StatusBar Grid.Row="3" Background="#293955" Foreground="#FFF">
+            <StatusBarItem Content="{Binding Path=CurrentTab.Label}">
+                
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>
