@@ -93,11 +93,13 @@
     <Compile Include="Model\Hardware.cs" />
     <Compile Include="Model\HardwareType.cs" />
     <Compile Include="Model\HelpdeskContext.cs" />
+    <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
+    <Compile Include="ViewModel\Helper\ColumnData.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />

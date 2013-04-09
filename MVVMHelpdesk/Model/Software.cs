@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Программное обеспечение
     /// </summary>
-    public class Software
+    public class Software: IEntity
     {
         [Key]
         public Guid Id { get; set; }
