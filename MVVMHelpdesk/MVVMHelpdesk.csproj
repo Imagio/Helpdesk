@@ -82,6 +82,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Events\SignedEventArgs.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Cartridge.cs" />
@@ -99,7 +100,6 @@
     <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
-    <Compile Include="ViewModel\Helper\ColumnData.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
@@ -107,6 +107,9 @@
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
     <Compile Include="ViewModel\TabViewModel.cs" />
     <Compile Include="ViewModel\Workspace\Workspace.cs" />
+    <Compile Include="View\DialogView.xaml.cs">
+      <DependentUpon>DialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Entity\SoftwareView.xaml.cs">
       <DependentUpon>SoftwareView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
     <Compile Include="View\Workspace\WorkspaceToolsView.xaml.cs">
       <DependentUpon>WorkspaceToolsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Menu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\ToolButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,7 +188,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -206,16 +216,10 @@
     <Resource Include="Images\hardware.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\library.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\item.png" />
     <Resource Include="Images\printer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Images\edit.png" />
     <Resource Include="Images\delete.png" />
     <Resource Include="Images\create.png" />
@@ -247,6 +251,13 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancel.png" />
+    <Resource Include="Images\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

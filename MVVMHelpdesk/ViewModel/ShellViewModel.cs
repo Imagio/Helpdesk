@@ -57,5 +57,50 @@ namespace Imagio.Helpdesk.ViewModel
                 return _softwareMenuCommand;
             }
         }
+
+        private ICommand _hardwareMenuCommand;
+        public ICommand HardwareMenuCommand
+        {
+            get
+            {
+                _hardwareMenuCommand = _hardwareMenuCommand ?? new RelayCommand(() =>
+                {
+                    var workspace = new Workspace<Hardware>();
+                    var tab = new Tab<Workspace<Hardware>>(workspace, "Аппаратное обеспечение");
+                    AddTab(tab);
+                });
+                return _hardwareMenuCommand;
+            }
+        }
+
+        private ICommand _consumableMenuCommand;
+        public ICommand ConsumableMenuCommand
+        {
+            get
+            {
+                _consumableMenuCommand = _consumableMenuCommand ?? new RelayCommand(() =>
+                {
+                    var workspace = new Workspace<Consumable>();
+                    var tab = new Tab<Workspace<Consumable>>(workspace, "Расходные материалы");
+                    AddTab(tab);
+                });
+                return _consumableMenuCommand;
+            }
+        }
+
+        private ICommand _cartridgeMenuCommand;
+        public ICommand CartridgeMenuCommand
+        {
+            get
+            {
+                _cartridgeMenuCommand = _cartridgeMenuCommand ?? new RelayCommand(() =>
+                {
+                    var workspace = new Workspace<Cartridge>();
+                    var tab = new Tab<Workspace<Cartridge>>(workspace, "Картриджи");
+                    AddTab(tab);
+                });
+                return _cartridgeMenuCommand;
+            }
+        }
     }
 }

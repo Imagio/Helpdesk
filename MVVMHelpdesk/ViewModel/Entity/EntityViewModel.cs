@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using Imagio.Helpdesk.Model;
 using System.Reflection;
+using System.Windows.Input;
+using Imagio.Helpdesk.ViewModel.Helper;
+using System.Data.Entity.Validation;
 
 namespace Imagio.Helpdesk.ViewModel.Entity
 {
@@ -17,43 +20,18 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         {
             if (model == null)
                 throw new ArgumentNullException("model");
-            //if (context == null)
-            //    throw new ArgumentNullException("context");
+            if (context == null)
+                throw new ArgumentNullException("context");
 
             Model = model;
             Context = context;
-
-            PropertyChanged += EntityViewModel_PropertyChanged;
-
-            InitValidation();
         }
 
         public TE Model { get; private set; }
 
         #region IDataErrorInfo
 
-        void EntityViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName != "Error")
-            {
-                RemoveError(e.PropertyName);
-                CheckErrors(e.PropertyName);
-                UpdateError();
-            }
-        }
-
-        protected void InitValidation()
-        {
-            foreach (var prop in typeof(TE).GetProperties())
-            {
-                if (prop.Name != "Error")
-                    CheckErrors(prop.Name);
-            }
-        }
-
         private Dictionary<string, string> _errorList = new Dictionary<string, string>();
-
-        protected abstract void CheckErrors(string propertyName);
 
         public string Error
         {
@@ -64,10 +42,18 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 var sb = new StringBuilder();
                 foreach (var item in _errorList)
                 {
-                    sb.AppendFormat("{0}\n", item.Value);
+                    if (sb.Length == 0)
+                        sb.AppendFormat("{0}", item.Value);
+                    else
+                        sb.AppendFormat("\n{0}", item.Value);
                 }
                 return sb.ToString();
             }
+        }
+
+        public bool HasError
+        {
+            get { return _errorList.Count > 0; }
         }
 
         public string this[string columnName]
@@ -84,31 +70,53 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 _errorList.Remove(propertyName);
         }
 
-        public void AddError(string propertyName, string error = "Поле {0} должно быть заполнено")
+        public void AddError(string propertyName, string error)
         {
-            if (_errorList.ContainsKey(propertyName))
-                return;
-
-            var name = propertyName;
-
-            var propertyInfo = Model.GetType().GetProperty(propertyName);
-            if (propertyInfo != null)
-            {
-                var displayName = propertyInfo.GetCustomAttributes(typeof(DisplayAttribute), true) as DisplayAttribute[];
-                if (displayName != null && displayName.Count() > 0)
-                {
-                    name = displayName[0].Name;
-                }
-            }
-
-            _errorList.Add(propertyName, String.Format(error, '[' + name + ']'));
+            if (!_errorList.ContainsKey(propertyName))
+                _errorList.Add(propertyName, error);
+            RaisePropertyChanged(propertyName);
         }
 
         public void UpdateError()
         {
             OnPropertyChanged(() => Error);
+            OnPropertyChanged(() => HasError);
         }
 
         #endregion
+
+        private ICommand _saveCommand;
+        public ICommand SaveCommand
+        {
+            get
+            {
+                _saveCommand = _saveCommand ?? new RelayCommand(() =>
+                {
+                    var allErrors = Context.GetValidationErrors();
+                    var errors = allErrors.Where(o => o.Entry.Entity == Model).First();
+                    foreach (var item in errors.ValidationErrors)
+                    {
+                        AddError(item.PropertyName, item.ErrorMessage);
+                        UpdateError();
+                    }
+                });
+                return _saveCommand;
+            }
+        }
+
+        private ICommand _cancelCommand;
+        public ICommand CancelCommand
+        {
+            get
+            {
+                _cancelCommand = _cancelCommand ?? new RelayCommand(() =>
+                {
+                    var entry = Context.Entry(Model);
+                    if (entry.State == System.Data.EntityState.Modified)
+                        entry.Reload();
+                });
+                return _cancelCommand;
+            }
+        }
     }
 }

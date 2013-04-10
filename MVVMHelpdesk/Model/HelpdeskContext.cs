@@ -42,7 +42,7 @@ namespace Imagio.Helpdesk.Model
         /// <summary>
         /// Оборудование
         /// </summary>
-        public DbSet<Hardware> Hardware { get; set; }
+        public DbSet<Hardware> Hardwares { get; set; }
 
         /// <summary>
         /// Типы оборудования

@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Input;
 using Imagio.Helpdesk.Model;
+using Imagio.Helpdesk.View;
 using Imagio.Helpdesk.ViewModel.Helper;
 
 namespace Imagio.Helpdesk.ViewModel.Workspace
@@ -16,7 +17,7 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
     {
     }
 
-    public class Workspace<TE> : Workspace where TE : IEntity
+    public class Workspace<TE> : Workspace where TE : class, IEntity
     {
         public Workspace()
         {
@@ -55,22 +56,14 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
         {
             using (var context = new HelpdeskContext())
             {
-                try
-                {
-                    var dbSet = EntityStore.Workspace<TE>(context);
-                    var item = dbSet.Create() as IEntity;
-                    item.Id = Guid.NewGuid();
-                    dbSet.Add(item);
-                    context.SaveChanges();
-                }
-                catch (DbEntityValidationException validationException)
-                {
-                    var sb = new StringBuilder();
-                    foreach (var item in validationException.EntityValidationErrors)
-                        foreach (var itm in item.ValidationErrors)
-                            sb.AppendFormat("[{0}] {1}\n", itm.PropertyName, itm.ErrorMessage);
-                    System.Windows.MessageBox.Show(sb.ToString());
-                }
+                var dbSet = EntityStore.Workspace<TE>(context);
+                var item = dbSet.Create() as TE;
+                dbSet.Add(item);
+                //item.Id = Guid.NewGuid();
+                var window = new DialogView();
+                var viewModel = EntityStore.ViewModel<TE>(item, context);
+                window.DataContext = viewModel;
+                window.ShowDialog();
             }
         }
 
@@ -99,14 +92,6 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
         }
         private void _deleteAction()
         {
-        }
-
-        private ObservableCollection<ColumnData> _columns = new ObservableCollection<ColumnData>();
-        public ObservableCollection<ColumnData> Columns { get {return _columns;} }
-        protected void AddColumn<T>(Expression<Func<T>> property, string header)
-        {
-            var columnData = new ColumnData((property.Body as MemberExpression).Member.Name, header);
-            Columns.Add(columnData);
         }
     }
 }

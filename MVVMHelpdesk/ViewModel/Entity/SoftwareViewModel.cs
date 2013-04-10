@@ -23,11 +23,5 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 OnPropertyChanged(() => Name);
             }
         }
-
-        protected override void CheckErrors(string propertyName)
-        {
-            if (propertyName == "Name" && String.IsNullOrEmpty(Model.Name))
-                AddError(propertyName);
-        }
     }
 }
