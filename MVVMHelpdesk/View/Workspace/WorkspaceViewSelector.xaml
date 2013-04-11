@@ -24,6 +24,13 @@
                                         </DataTemplate>
                                     </selector:Template.DataTemplate>
                                 </selector:Template>
+                                <selector:Template Value="{x:Type model:Firm}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:SimpleWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
                             </selector:TemplateCollection>
                         </Setter.Value>
                     </Setter>

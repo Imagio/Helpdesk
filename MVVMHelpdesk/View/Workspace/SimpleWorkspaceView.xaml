@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.SoftwareWorkspaceView"
+﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.SimpleWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -7,9 +7,9 @@
               AutoGenerateColumns="False"
               IsReadOnly="True">
         <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Path=Id}" Header="Идентификатор" />
             <DataGridTextColumn Binding="{Binding Path=Name}" Header="Наименование" />
-            <DataGridTextColumn Binding="{Binding Path=Maker.Name}" Header="Производитель" />
-            <DataGridTextColumn Binding="{Binding Path=Master.ShortName}" Header="Ответственный специалист" />
         </DataGrid.Columns>
     </DataGrid>
+
 </UserControl>

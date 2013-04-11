@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMHelpdesk", "MVVMHelpdesk\MVVMHelpdesk.csproj", "{1594EE3E-266E-4B3B-963E-991F3ACE0241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waiter", "..\..\nikotin\Helpdesk\Waiter\Waiter.csproj", "{6BD69403-2AC8-4490-84A8-AD2AC30102DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{1594EE3E-266E-4B3B-963E-991F3ACE0241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1594EE3E-266E-4B3B-963E-991F3ACE0241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1594EE3E-266E-4B3B-963E-991F3ACE0241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BD69403-2AC8-4490-84A8-AD2AC30102DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BD69403-2AC8-4490-84A8-AD2AC30102DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BD69403-2AC8-4490-84A8-AD2AC30102DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BD69403-2AC8-4490-84A8-AD2AC30102DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

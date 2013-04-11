@@ -21,5 +21,13 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 return Context.Set<Employee>().ToList();
             }
         }
+
+        public IList<Firm> FirmCollection
+        {
+            get
+            {
+                return Context.Set<Firm>().ToList();
+            }
+        }
     }
 }

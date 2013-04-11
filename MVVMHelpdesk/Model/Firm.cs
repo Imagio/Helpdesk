@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Производитель
     /// </summary>
-    public class Firm
+    public class Firm: IEntity
     {
         [Key]
         [Required]
@@ -19,6 +19,7 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
-        public String Nam { get; set; }
+        [Display(Name="Наименование")]
+        public String Name { get; set; }
     }
 }

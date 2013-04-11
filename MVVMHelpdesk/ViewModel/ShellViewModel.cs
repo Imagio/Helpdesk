@@ -19,14 +19,35 @@ namespace Imagio.Helpdesk.ViewModel
             TabCollection = new ObservableCollection<TabViewModel>();
         }
 
+        private bool _isWait;
+        public bool IsWait
+        {
+            get { return _isWait; }
+            set
+            {
+                _isWait = value;
+                OnPropertyChanged(() => IsWait);
+            }
+        }
+
         public void AddTab(TabViewModel tabViewModel)
         {
-            TabCollection.Add(tabViewModel);
+            TabCollection.Insert(0, tabViewModel);
             tabViewModel.CloseTabClick += (sender) =>
                 {
                     TabCollection.Remove(sender);
                 };
             CurrentTab = tabViewModel;
+        }
+
+        private void _addEntityTab<TE>(string title) where TE : class, IEntity
+        {
+            Waiter.WaitHandler.Run(() =>
+                {
+                    var workspace = new Workspace<TE>();
+                    var tab = new Tab<Workspace<TE>>(workspace, title);
+                    AddTab(tab);
+                });
         }
 
         public ObservableCollection<TabViewModel> TabCollection { get; private set; }
@@ -47,13 +68,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(
-                    () =>
-                    {
-                        var workspace = new Workspace<Software>();
-                        var tab = new Tab<Workspace<Software>>(workspace, "Прогрммное обеспечение");
-                        AddTab(tab);
-                    });
+                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Software>("Прогрммное обеспечение"));
                 return _softwareMenuCommand;
             }
         }
@@ -63,12 +78,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _hardwareMenuCommand = _hardwareMenuCommand ?? new RelayCommand(() =>
-                {
-                    var workspace = new Workspace<Hardware>();
-                    var tab = new Tab<Workspace<Hardware>>(workspace, "Аппаратное обеспечение");
-                    AddTab(tab);
-                });
+                _hardwareMenuCommand = _hardwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Hardware>("Аппаратное обеспечение"));
                 return _hardwareMenuCommand;
             }
         }
@@ -78,12 +88,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _consumableMenuCommand = _consumableMenuCommand ?? new RelayCommand(() =>
-                {
-                    var workspace = new Workspace<Consumable>();
-                    var tab = new Tab<Workspace<Consumable>>(workspace, "Расходные материалы");
-                    AddTab(tab);
-                });
+                _consumableMenuCommand = _consumableMenuCommand ?? new RelayCommand(() => _addEntityTab<Consumable>("Расходные материалы"));
                 return _consumableMenuCommand;
             }
         }
@@ -93,13 +98,18 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _cartridgeMenuCommand = _cartridgeMenuCommand ?? new RelayCommand(() =>
-                {
-                    var workspace = new Workspace<Cartridge>();
-                    var tab = new Tab<Workspace<Cartridge>>(workspace, "Картриджи");
-                    AddTab(tab);
-                });
+                _cartridgeMenuCommand = _cartridgeMenuCommand ?? new RelayCommand(() => _addEntityTab<Cartridge>("Картриджи"));
                 return _cartridgeMenuCommand;
+            }
+        }
+
+        private ICommand _firmMenuCommand;
+        public ICommand FirmMenuCommand
+        {
+            get
+            {
+                _firmMenuCommand = _firmMenuCommand ?? new RelayCommand(() => _addEntityTab<Firm>("Производители"));
+                return _firmMenuCommand;
             }
         }
     }

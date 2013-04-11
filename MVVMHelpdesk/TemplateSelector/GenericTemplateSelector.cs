@@ -9,6 +9,11 @@ namespace Imagio.Helpdesk.TemplateSelector
 {
     public class GenericTemplateSelector : DataTemplateSelector
     {
+        static GenericTemplateSelector()
+        {
+
+        }
+
         public static readonly DependencyProperty TemplatesProperty =
             DependencyProperty.RegisterAttached("Templates", typeof(TemplateCollection), typeof(DataTemplateSelector),
             new FrameworkPropertyMetadata(new TemplateCollection(), FrameworkPropertyMetadataOptions.Inherits));
@@ -48,7 +53,10 @@ namespace Imagio.Helpdesk.TemplateSelector
 
     public class TemplateCollection : List<Template>
     {
+        static TemplateCollection()
+        {
 
+        }
     }
 
     public class Template : DependencyObject

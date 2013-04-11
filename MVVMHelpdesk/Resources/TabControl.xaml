@@ -19,14 +19,16 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
                         <TabPanel Name="HeaderPanel"
-                                    Grid.Row="0"
-                                    Panel.ZIndex="1" 
-                                    Margin="0" 
-                                    IsItemsHost="True"
-                                    KeyboardNavigation.TabIndex="1"
-                                    Background="Transparent" />
+                                  
+                                  Grid.Row="0"
+                                  Panel.ZIndex="1" 
+                                  Margin="0" 
+                                  IsItemsHost="True"
+                                  KeyboardNavigation.TabIndex="1"
+                                  Background="Transparent" AllowDrop="True" />
                             <Border Name="Border" 
                                 Grid.Row="1" 
                                 KeyboardNavigation.TabNavigation="Local"
@@ -112,6 +114,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="AllowDrop" Value="True"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#4B5C74" />

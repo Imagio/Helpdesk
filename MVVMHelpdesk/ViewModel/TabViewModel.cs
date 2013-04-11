@@ -37,7 +37,5 @@ namespace Imagio.Helpdesk.ViewModel
             Label = title;
             ViewModel = content;
         }
-
-
     }
 }

@@ -13,7 +13,7 @@ using Imagio.Helpdesk.ViewModel.Helper;
 
 namespace Imagio.Helpdesk.ViewModel.Workspace
 {
-    public abstract class Workspace: ViewModelBase
+    public abstract class Workspace : ViewModelBase
     {
     }
 
@@ -30,7 +30,7 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
             ItemColletion.Clear();
             using (var context = new HelpdeskContext())
             {
-                DbSet<TE> dbSet = context.Set<TE>();
+                var dbSet = EntityStore.EntityQuery<TE>(context);
                 if (dbSet != null)
                 {
                     foreach (var item in dbSet)
@@ -108,27 +108,28 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
                 return;
             using (var context = new HelpdeskContext())
             {
-                    var item = context.Set<TE>().Where(w => w.Id == _selectedItem.Id).Single();
+                var query = EntityStore.EntityQuery<TE>(context);
+                var item = query.Where(w => w.Id == _selectedItem.Id).Single();
 
-                    var window = new DialogView();
-                    var viewModel = EntityStore.ViewModel<TE>(item, context);
+                var window = new DialogView();
+                var viewModel = EntityStore.ViewModel<TE>(item, context);
 
-                    viewModel.OnCancel += (sender) =>
-                    {
-                        if (window.IsVisible)
-                            window.DialogResult = false;
-                        _refreshCollection();
-                    };
+                viewModel.OnCancel += (sender) =>
+                {
+                    if (window.IsVisible)
+                        window.DialogResult = false;
+                    _refreshCollection();
+                };
 
-                    viewModel.OnSave += (sender) =>
-                    {
-                        if (window.IsVisible)
-                            window.DialogResult = false;
-                        context.SaveChanges();
-                        _refreshCollection();
-                    };
-                    window.DataContext = viewModel;
-                    window.ShowDialog();
+                viewModel.OnSave += (sender) =>
+                {
+                    if (window.IsVisible)
+                        window.DialogResult = false;
+                    context.SaveChanges();
+                    _refreshCollection();
+                };
+                window.DataContext = viewModel;
+                window.ShowDialog();
             }
         }
 
