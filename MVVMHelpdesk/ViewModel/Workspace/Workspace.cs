@@ -21,7 +21,7 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
     {
         public Workspace()
         {
-            ItemColletion = new ObservableCollection<IEntity>();
+            ItemColletion = new ObservableCollection<TE>();
             _refreshCollection();
         }
 
@@ -30,18 +30,28 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
             ItemColletion.Clear();
             using (var context = new HelpdeskContext())
             {
-                DbSet dbSet = EntityStore.Workspace<TE>(context) as DbSet;
+                DbSet<TE> dbSet = context.Set<TE>();
                 if (dbSet != null)
                 {
                     foreach (var item in dbSet)
                     {
-                        ItemColletion.Add(item as IEntity);
+                        ItemColletion.Add(item);
                     }
                 }
             }
         }
 
-        public ObservableCollection<IEntity> ItemColletion { get; private set; }
+        public ObservableCollection<TE> ItemColletion { get; private set; }
+        private IEntity _selectedItem;
+        public IEntity SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
 
         private ICommand _addCommand;
         public ICommand AddCommand
@@ -56,12 +66,28 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
         {
             using (var context = new HelpdeskContext())
             {
-                var dbSet = EntityStore.Workspace<TE>(context);
+                var dbSet = context.Set<TE>();
                 var item = dbSet.Create() as TE;
+                item.Id = Guid.NewGuid();
                 dbSet.Add(item);
-                //item.Id = Guid.NewGuid();
                 var window = new DialogView();
                 var viewModel = EntityStore.ViewModel<TE>(item, context);
+
+                viewModel.OnCancel += (sender) =>
+                    {
+                        if (window.IsVisible)
+                            window.DialogResult = false;
+                        _refreshCollection();
+                    };
+
+                viewModel.OnSave += (sender) =>
+                    {
+                        if (window.IsVisible)
+                            window.DialogResult = false;
+                        context.SaveChanges();
+                        _refreshCollection();
+                    };
+
                 window.DataContext = viewModel;
                 window.ShowDialog();
             }
@@ -78,7 +104,32 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
         }
         private void _editAction()
         {
+            if (_selectedItem == null)
+                return;
+            using (var context = new HelpdeskContext())
+            {
+                    var item = context.Set<TE>().Where(w => w.Id == _selectedItem.Id).Single();
 
+                    var window = new DialogView();
+                    var viewModel = EntityStore.ViewModel<TE>(item, context);
+
+                    viewModel.OnCancel += (sender) =>
+                    {
+                        if (window.IsVisible)
+                            window.DialogResult = false;
+                        _refreshCollection();
+                    };
+
+                    viewModel.OnSave += (sender) =>
+                    {
+                        if (window.IsVisible)
+                            window.DialogResult = false;
+                        context.SaveChanges();
+                        _refreshCollection();
+                    };
+                    window.DataContext = viewModel;
+                    window.ShowDialog();
+            }
         }
 
         private ICommand _deleteCommand;
@@ -92,6 +143,25 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
         }
         private void _deleteAction()
         {
+            if (_selectedItem == null)
+                return;
+            using (var context = new HelpdeskContext())
+            {
+                var item = context.Set<TE>().Where(w => w.Id == _selectedItem.Id).Single();
+                context.Set<TE>().Remove(item);
+                context.SaveChanges();
+                _refreshCollection();
+            }
+        }
+
+        private ICommand _refreshCommand;
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                _refreshCommand = _refreshCommand ?? new RelayCommand(_refreshCollection);
+                return _refreshCommand;
+            }
         }
     }
 }

@@ -83,7 +83,11 @@
                 <DataTemplate>
                     <Border BorderThickness="0 2 0 0" BorderBrush="#FFF0D0"
                             Background="#FFF" Padding="4">
-                        <ContentControl Content="{Binding ViewModel, Mode=OneWay}" />
+                        <ContentControl Content="{Binding ViewModel, Mode=OneWay}">
+                            <ContentControl.Resources>
+                                <ResourceDictionary Source="Workspace/WorkspaceViewSelector.xaml" />
+                            </ContentControl.Resources>
+                        </ContentControl>
                     </Border>
                 </DataTemplate>
             </TabControl.ContentTemplate>

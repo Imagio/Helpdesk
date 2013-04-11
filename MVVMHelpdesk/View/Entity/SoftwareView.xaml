@@ -17,10 +17,10 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Наименование" />
         <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" 
-                 Text="{Binding Name, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+                 Text="{Binding Model.Name, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
         <Label Grid.Column="0" Grid.Row="1" Content="Производитель" />
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Path=Employee}" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Path=Model.Master}" ItemsSource="{Binding Path=EmployeeCollection}" VerticalAlignment="Center" />
         <Label Grid.Column="0" Grid.Row="2" Content="Ответственный специалист" />
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Path=Maker}" VerticalAlignment="Center" />
+        <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Path=Model.Maker}" ItemsSource="{Binding Path=FirmCollection}" VerticalAlignment="Center" />
     </Grid>
 </UserControl>

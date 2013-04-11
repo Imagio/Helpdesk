@@ -14,13 +14,11 @@ namespace Imagio.Helpdesk.ViewModel.Entity
 
         }
 
-        public String Name
+        public IList<Employee> EmployeeCollection 
         {
-            get { return Model.Name; }
-            set
+            get
             {
-                Model.Name = value;
-                OnPropertyChanged(() => Name);
+                return Context.Set<Employee>().ToList();
             }
         }
     }

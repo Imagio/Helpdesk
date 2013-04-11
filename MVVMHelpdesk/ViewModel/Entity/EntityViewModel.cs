@@ -12,8 +12,14 @@ using System.Data.Entity.Validation;
 
 namespace Imagio.Helpdesk.ViewModel.Entity
 {
-    public abstract class EntityViewModel<TE>: TabViewModel, IDataErrorInfo where TE: class
+    public abstract class EntityViewModel<TE>: ViewModelBase, IDataErrorInfo where TE: class
     {
+        public delegate void SaveEventHandler(object sender);
+        public event SaveEventHandler OnSave;
+
+        public delegate void CancelEventHandler(object sender);
+        public event CancelEventHandler OnCancel;
+
         protected HelpdeskContext Context;
 
         public EntityViewModel(TE model, HelpdeskContext context)
@@ -93,12 +99,18 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 _saveCommand = _saveCommand ?? new RelayCommand(() =>
                 {
                     var allErrors = Context.GetValidationErrors();
-                    var errors = allErrors.Where(o => o.Entry.Entity == Model).First();
-                    foreach (var item in errors.ValidationErrors)
+                    var errors = allErrors.Where(o => o.Entry.Entity == Model).FirstOrDefault();
+                    if (errors != null)
                     {
-                        AddError(item.PropertyName, item.ErrorMessage);
-                        UpdateError();
+                        foreach (var item in errors.ValidationErrors)
+                        {
+                            AddError(item.PropertyName, item.ErrorMessage);
+                            UpdateError();
+                        }
                     }
+                    else
+                        if (OnSave != null)
+                            OnSave(this);
                 });
                 return _saveCommand;
             }
@@ -111,9 +123,8 @@ namespace Imagio.Helpdesk.ViewModel.Entity
             {
                 _cancelCommand = _cancelCommand ?? new RelayCommand(() =>
                 {
-                    var entry = Context.Entry(Model);
-                    if (entry.State == System.Data.EntityState.Modified)
-                        entry.Reload();
+                    if (OnCancel != null)
+                        OnCancel(this);
                 });
                 return _cancelCommand;
             }

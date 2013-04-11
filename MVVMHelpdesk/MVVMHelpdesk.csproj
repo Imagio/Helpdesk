@@ -98,6 +98,7 @@
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />
+    <Compile Include="TemplateSelector\GenericTemplateSelector.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
@@ -115,6 +116,9 @@
     </Compile>
     <Compile Include="View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\SoftwareWorkspaceView.xaml.cs">
+      <DependentUpon>SoftwareWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workspace\WorkspaceToolsView.xaml.cs">
       <DependentUpon>WorkspaceToolsView.xaml</DependentUpon>
@@ -165,7 +169,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Workspace\SoftwareWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Workspace\WorkspaceToolsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\WorkspaceViewSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
