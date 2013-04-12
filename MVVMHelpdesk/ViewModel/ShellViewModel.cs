@@ -42,12 +42,19 @@ namespace Imagio.Helpdesk.ViewModel
 
         private void _addEntityTab<TE>(string title) where TE : class, IEntity
         {
-            Waiter.WaitHandler.Run(() =>
-                {
-                    var workspace = new Workspace<TE>();
-                    var tab = new Tab<Workspace<TE>>(workspace, title);
-                    AddTab(tab);
-                });
+            if (!TabCollection.OfType<Tab<Workspace<TE>>>().Any())
+            {
+                Waiter.WaitHandler.Run(() =>
+                    {
+                        var workspace = new Workspace<TE>();
+                        var tab = new Tab<Workspace<TE>>(workspace, title);
+                        AddTab(tab);
+                    });
+            }
+            else
+            {
+                CurrentTab = TabCollection.OfType<Tab<Workspace<TE>>>().Single();
+            }
         }
 
         public ObservableCollection<TabViewModel> TabCollection { get; private set; }

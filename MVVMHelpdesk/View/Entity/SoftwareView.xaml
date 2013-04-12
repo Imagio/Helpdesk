@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModelEntity="clr-namespace:Imagio.Helpdesk.ViewModel.Entity">
     
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

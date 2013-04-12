@@ -1,0 +1,24 @@
+﻿<Window x:Class="Waiter.WaitWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:spprt="clr-namespace:Waiter"
+        SizeToContent="WidthAndHeight"
+        Background="Transparent" AllowsTransparency="True" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" ShowInTaskbar="False">
+    <Border Background="#FFF0D0" CornerRadius="0" Margin="10" BorderThickness="1" BorderBrush="#E5C365">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="5" ShadowDepth="0" />
+        </Border.Effect>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="Black" 
+                       UseLayoutRounding="True"
+                       FontSize="18"
+                       Text="Пожалуйста, подождите..." />
+            <spprt:WaitIndicator Grid.Row="1" Width="60" Height="60" Margin="20" />
+        </Grid>
+    </Border>
+</Window>

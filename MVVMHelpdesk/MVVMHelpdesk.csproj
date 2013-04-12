@@ -296,7 +296,7 @@
     <Resource Include="Images\application.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\nikotin\Helpdesk\Waiter\Waiter.csproj">
+    <ProjectReference Include="..\Waiter\Waiter.csproj">
       <Project>{6bd69403-2ac8-4490-84a8-ad2ac30102dc}</Project>
       <Name>Waiter</Name>
     </ProjectReference>

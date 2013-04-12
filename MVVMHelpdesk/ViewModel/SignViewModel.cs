@@ -76,16 +76,19 @@ namespace Imagio.Helpdesk.ViewModel
                             return;
                         }
 
-                        using (var context = new FakeContext())
+                        //using (var context = new FakeContext())
                         {
                             Account account = null;
                             try
                             {
+                                /*
                                 account = context.Accounts.Local.Single(w => w.Login == _login);
                                 var pwd = Hash.ToString(account.Password);
                                 var pwd_check = Hash.ToString(_password);
 
                                 account = pwd == pwd_check ? account : null;
+                                 * */
+                                account = new Account();
                             }
                             catch
                             {
