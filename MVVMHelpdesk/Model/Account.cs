@@ -10,7 +10,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Аккаунт пользователя
     /// </summary>
-    public class Account
+    public class Account: IEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -20,18 +20,21 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [StringLength(20)]
+        [Display(Name="Имя пользователя")]
         public String Login { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
         [Required]
+        [Display(Name="Пароль")]
         public Byte[] Password { get; set; }
 
         /// <summary>
         /// Активная учетная запись
         /// </summary>
         [Required]
+        [Display(Name="Активная учетная запись")]
         public Boolean IsActive { get; set; }
 
         /// <summary>

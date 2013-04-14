@@ -9,16 +9,17 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Тип оборудования
     /// </summary>
-    public class HardwareType
+    public class HardwareType: IEntity
     {
         [Key]
         [Required]
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Наименование
         /// </summary>
         [Required]
+        [Display(Name="Наименование")]
         public String Name { get; set; }
     }
 }

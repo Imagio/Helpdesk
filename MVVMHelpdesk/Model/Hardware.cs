@@ -18,6 +18,7 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
+        [Display(Name="Наименование")]
         public String Name { get; set; }
     }
 }

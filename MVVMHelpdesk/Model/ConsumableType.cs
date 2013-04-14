@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Тип расходного материала
     /// </summary>
-    public class ConsumableType
+    public class ConsumableType: IEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -18,6 +18,7 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
+        [Display(Name="Наименование")]
         public String Name { get; set; }
     }
 }

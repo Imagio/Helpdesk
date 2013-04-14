@@ -89,12 +89,11 @@
     <Compile Include="Model\CartridgeType.cs" />
     <Compile Include="Model\Consumable.cs" />
     <Compile Include="Model\Employee.cs" />
-    <Compile Include="Model\FakeContext.cs" />
     <Compile Include="Model\Firm.cs" />
     <Compile Include="Model\Hardware.cs" />
     <Compile Include="Model\HardwareType.cs" />
     <Compile Include="Model\HelpdeskContext.cs" />
-    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\Interfaces\IEntity.cs" />
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />

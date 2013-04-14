@@ -12,7 +12,6 @@ namespace Imagio.Helpdesk.Model
     public class Firm: IEntity
     {
         [Key]
-        [Required]
         public Guid Id { get; set; }
 
         /// <summary>

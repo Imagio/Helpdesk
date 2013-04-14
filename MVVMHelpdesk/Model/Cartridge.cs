@@ -18,21 +18,25 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
+        [Display(Name="Наименование")]
         public String Name { get; set; }
 
         /// <summary>
         /// Тип картриджа
         /// </summary>
+        [Display(Name="Тип")]
         public CartridgeType CartridgeType { get; set; }
 
         /// <summary>
         /// Производитель
         /// </summary>
+        [Display(Name="Производитель")]
         public Firm Maker { get; set; }
 
         /// <summary>
         /// Ответственный специалист
         /// </summary>
+        [Display(Name="Ответственный специалист")]
         public Employee Master { get; set; }
     }
 }
