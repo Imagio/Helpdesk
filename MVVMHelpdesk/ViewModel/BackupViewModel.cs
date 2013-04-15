@@ -72,5 +72,33 @@ namespace Imagio.Helpdesk.ViewModel
                 return _backupDatabaseCommand;
             }
         }
+
+        private ICommand _restoreDatabaseCommand;
+        public ICommand RestoreDatabaseCommand
+        {
+            get
+            {
+                _restoreDatabaseCommand = _restoreDatabaseCommand ?? new RelayCommand(() =>
+                    {
+                        if (String.IsNullOrEmpty(_selectedFile))
+                            return;
+                    });
+                return _restoreDatabaseCommand;
+            }
+        }
+
+        private String _selectedFile;
+        public String SelectedFile
+        {
+            get { return _selectedFile; }
+            set
+            {
+                if (_selectedFile != value)
+                {
+                    _selectedFile = value;
+                    OnPropertyChanged(() => SelectedFile);
+                }
+            }
+        }
     }
 }
