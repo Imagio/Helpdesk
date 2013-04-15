@@ -17,17 +17,19 @@ namespace Imagio.Helpdesk.ViewModel
         public ShellViewModel()
         {
             TabCollection = new ObservableCollection<TabViewModel>();
+
+            _generateDirectoryMenu();
         }
 
-        private bool _isWait;
-        public bool IsWait
+        public IList<MenuItem> DirectoryMenuCollection { get; private set; }
+        private void _generateDirectoryMenu()
         {
-            get { return _isWait; }
-            set
-            {
-                _isWait = value;
-                OnPropertyChanged(() => IsWait);
-            }
+            DirectoryMenuCollection = new List<MenuItem>();
+
+            DirectoryMenuCollection.Add(new MenuItem("Производители", () => _addEntityTab<Firm>("Производители")));
+            DirectoryMenuCollection.Add(new MenuItem("Типы картриджей", () => _addEntityTab<CartridgeType>("Типы картриджей")));
+            DirectoryMenuCollection.Add(new MenuItem("Типы расходных материалов", () => _addEntityTab<ConsumableType>("Типы расходных материалов")));
+            DirectoryMenuCollection.Add(new MenuItem("Типы аппаратного обеспечения", () => _addEntityTab<ConsumableType>("Типы аппаратного обеспечения")));
         }
 
         public void AddTab(TabViewModel tabViewModel)
@@ -110,13 +112,36 @@ namespace Imagio.Helpdesk.ViewModel
             }
         }
 
-        private ICommand _firmMenuCommand;
-        public ICommand FirmMenuCommand
+        private ICommand _accountMenuCommand;
+        public ICommand AccountMenuCommand
         {
             get
             {
-                _firmMenuCommand = _firmMenuCommand ?? new RelayCommand(() => _addEntityTab<Firm>("Производители"));
-                return _firmMenuCommand;
+                _accountMenuCommand = _accountMenuCommand ?? new RelayCommand(() => _addEntityTab<Account>("Учетные записи"));
+                return _accountMenuCommand;
+            }
+        }
+
+        private ICommand _employeeMenuCommand;
+        public ICommand EmployeeMenuCommand
+        {
+            get
+            {
+                _employeeMenuCommand = _employeeMenuCommand ?? new RelayCommand(() => _addEntityTab<Employee>("Сотрудники"));
+                return _employeeMenuCommand;
+            }
+        }
+
+        private ICommand _backupMenuCommand;
+        public ICommand BackupMenuCommand
+        {
+            get
+            {
+                _backupMenuCommand = _backupMenuCommand ?? new RelayCommand(() =>
+                    {
+                        AddTab(new Tab<BackupViewModel>(new BackupViewModel(), "Резервное копирование"));
+                    });
+                return _backupMenuCommand;
             }
         }
     }

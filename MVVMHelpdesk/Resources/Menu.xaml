@@ -15,6 +15,25 @@
         </Setter>
     </Style>
 
+    <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}"
+       TargetType="Separator">
+        <Setter Property="Height" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="29" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Background="#E9ECEE" />
+                        <Border Grid.Column="1" Background="#BEC3CB" Margin="5 2" Height="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- TopLevelHeader -->
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}" TargetType="MenuItem">
         <Border Name="Border" BorderThickness="1 1 1 1">

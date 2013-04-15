@@ -1,10 +1,10 @@
-﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ViewModel="clr-namespace:Imagio.Helpdesk.ViewModel" 
         xmlns:workspaceViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Workspace" 
         xmlns:workspaceView="clr-namespace:Imagio.Helpdesk.View.Workspace"
+        xmlns:backupView="clr-namespace:Imagio.Helpdesk.View.Backup"
         xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper" 
         xmlns:Converter="clr-namespace:Imagio.Helpdesk.Converter" x:Class="Imagio.Helpdesk.View.ShellView" 
         Title="MainWindow" WindowState="Maximized" Background="#D6DBE9" Icon="/MVVMHelpdesk;component/Images/application.png">
@@ -54,7 +54,7 @@
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Картриджы" IsCheckable="True" Command="{Binding CartridgeMenuCommand}">
+                <MenuItem Header="Картриджы" IsCheckable="True" Command="{Binding CartridgeMenuCommand}" >
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
@@ -66,19 +66,38 @@
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Справочники">
-                <MenuItem Header="Производитель" Command="{Binding FirmMenuCommand}">
+                <MenuItem Header="Учетные записи" Command="{Binding AccountMenuCommand}">
                     <MenuItem.Icon>
-                        <Image Width="16" Height="15" Source="/MVVMHelpdesk;component/Images/table.png" />
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <Separator />
+                <MenuItem Header="Резервное копирование" Command="{Binding BackupMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/database.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справочники" ItemsSource="{Binding DirectoryMenuCollection}">
+                <MenuItem.Resources>
+                    <Image x:Key="boxImage" x:Shared="false" Width="16" Height="15" Source="/MVVMHelpdesk;component/Images/table.png" />
+                </MenuItem.Resources>
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="{x:Type MenuItem}">
+                        <Setter Property="Icon" Value="{StaticResource ResourceKey=boxImage}" />
+                        <Setter Property="Command" Value="{Binding Path=Command}" />
+                        <Setter Property="Header" Value="{Binding Path=Name}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
             </MenuItem>
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding CurrentTab.ViewModel}" Margin="10 2">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type workspaceViewModel:Workspace}">
                     <workspaceView:WorkspaceToolsView />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type ViewModel:BackupViewModel}">
+                    <backupView:BackupToolView />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type helperViewModel:ViewModelBase}" />
             </ContentControl.Resources>
@@ -94,7 +113,16 @@
                     <Border BorderThickness="0 2 0 0" BorderBrush="#FFF0D0" Background="#FFF" Padding="4">
                         <ContentControl Content="{Binding ViewModel, Mode=OneWay}">
                             <ContentControl.Resources>
-                                <ResourceDictionary Source="Workspace/WorkspaceViewSelector.xaml" />
+                                <ResourceDictionary>
+                                    <ResourceDictionary.MergedDictionaries>
+                                        <ResourceDictionary Source="Workspace/WorkspaceViewSelector.xaml" />
+                                        <ResourceDictionary>
+                                            <DataTemplate DataType="{x:Type ViewModel:BackupViewModel}">
+                                                <backupView:BackupView />
+                                            </DataTemplate>
+                                        </ResourceDictionary>
+                                    </ResourceDictionary.MergedDictionaries>
+                                </ResourceDictionary>
                             </ContentControl.Resources>
                         </ContentControl>
                     </Border>

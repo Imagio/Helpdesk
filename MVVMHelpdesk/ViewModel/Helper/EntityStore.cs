@@ -15,8 +15,17 @@ namespace Imagio.Helpdesk.ViewModel.Helper
 
         private static Dictionary<Type, Type> _entityViewModelDictionary = new Dictionary<Type, Type>
         {
-            { typeof(Software), typeof(SoftwareViewModel) },
-            { typeof(Firm), typeof(FirmViewModel) }
+            { typeof(Account), typeof(AccountViewModel) },
+            { typeof(Cartridge), typeof(EntityViewModel<Cartridge>) },
+            { typeof(CartridgeType), typeof(EntityViewModel<CartridgeType>) },
+            { typeof(Consumable), typeof(EntityViewModel<Consumable>) },
+            { typeof(ConsumableType), typeof(EntityViewModel<ConsumableType>) },
+            { typeof(Employee), typeof(EmployeeViewModel) },
+            { typeof(Firm), typeof(FirmViewModel) },
+            { typeof(Hardware), typeof(EntityViewModel<Hardware>)},
+            { typeof(HardwareType), typeof(EntityViewModel<HardwareType>) },
+            { typeof(Software), typeof(SoftwareViewModel) }
+
         };
 
         public static EntityViewModel<TE> ViewModel<TE>(TE model, HelpdeskContext context) where TE : class, IEntity
@@ -37,6 +46,15 @@ namespace Imagio.Helpdesk.ViewModel.Helper
 
         private static Dictionary<Type, QueryDelegate> _entityQuery = new Dictionary<Type,QueryDelegate>
         {
+            { typeof(Account), o => o.Set<Account>() },
+            { typeof(Cartridge), o => o.Set<Cartridge>().Include(i => i.Maker).Include(i => i.Master).Include(i => i.CartridgeType) },
+            { typeof(CartridgeType), o => o.Set<CartridgeType>() },
+            { typeof(Consumable), o => o.Set<Consumable>().Include(i => i.Master).Include(i => i.Maker).Include(i => i.ConsumableType) },
+            { typeof(ConsumableType), o => o.Set<ConsumableType>() },
+            { typeof(Employee), o => o.Set<Employee>() },
+            { typeof(Firm), o => o.Set<Firm>() },
+            { typeof(Hardware), o => o.Set<Hardware>() },
+            { typeof(HardwareType), o => o.Set<HardwareType>() },
             { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) }
         };
 

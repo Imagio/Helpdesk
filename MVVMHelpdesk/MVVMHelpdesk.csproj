@@ -98,18 +98,34 @@
     <Compile Include="Model\Software.cs" />
     <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="TemplateSelector\GenericTemplateSelector.cs" />
+    <Compile Include="ViewModel\BackupViewModel.cs" />
+    <Compile Include="ViewModel\Entity\AccountViewModel.cs" />
+    <Compile Include="ViewModel\Entity\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\FirmViewModel.cs" />
     <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
+    <Compile Include="ViewModel\MenuItem.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
     <Compile Include="ViewModel\TabViewModel.cs" />
     <Compile Include="ViewModel\Workspace\Workspace.cs" />
+    <Compile Include="View\Backup\BackupToolView.xaml.cs">
+      <DependentUpon>BackupToolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Backup\BackupView.xaml.cs">
+      <DependentUpon>BackupView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Entity\AccountView.xaml.cs">
+      <DependentUpon>AccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Entity\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Entity\SimpleView.xaml.cs">
       <DependentUpon>SimpleView.xaml</DependentUpon>
@@ -119,6 +135,12 @@
     </Compile>
     <Compile Include="View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\AccountWorkspaceView.xaml.cs">
+      <DependentUpon>AccountWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\EmployeeWorkspaceView.xaml.cs">
+      <DependentUpon>EmployeeWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workspace\SimpleWorkspaceView.xaml.cs">
       <DependentUpon>SimpleWorkspaceView.xaml</DependentUpon>
@@ -130,6 +152,10 @@
       <DependentUpon>WorkspaceToolsView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,7 +171,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Backup\BackupToolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Backup\BackupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,6 +218,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\SignView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\AccountWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\EmployeeWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -299,6 +349,10 @@
       <Project>{6bd69403-2ac8-4490-84a8-ad2ac30102dc}</Project>
       <Name>Waiter</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\database_load.png" />
+    <Resource Include="Images\database_save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

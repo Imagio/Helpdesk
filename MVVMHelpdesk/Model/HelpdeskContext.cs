@@ -1,9 +1,22 @@
-﻿using System.Data.Entity;
+﻿using System.Data.Common;
+using System.Data.Entity;
 
 namespace Imagio.Helpdesk.Model
 {
     public class HelpdeskContext: DbContext, IHelpdeskContext
     {
+        public HelpdeskContext()
+            : this(App.DatabaseConnection)
+        {
+
+        }
+
+        public HelpdeskContext(DbConnection connection)
+            :base(connection, false)
+        {
+
+        }
+
         /// <summary>
         /// Аккаунты
         /// </summary>

@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style x:Key="EntityWorkspaceGrid" TargetType="{x:Type DataGrid}">
+        <Setter Property="ItemsSource" Value="{Binding Path=ItemColletion}" />
+        <Setter Property="SelectedItem" Value="{Binding Path=SelectedItem}" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />
+    </Style>
+    
+</ResourceDictionary>

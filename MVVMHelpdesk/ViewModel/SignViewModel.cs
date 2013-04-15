@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,11 +36,14 @@ namespace Imagio.Helpdesk.ViewModel
             }
         }
 
-        private string _databasePath;
         public string DatabasePath
         {
-            get { return _databasePath; }
-            set { OnPropertyChanged(() => DatabasePath, ref _databasePath, value); }
+            get { return Properties.Settings.Default.DatabasePath; }
+            set 
+            {
+                Properties.Settings.Default.DatabasePath = value;
+                OnPropertyChanged(() => DatabasePath); 
+            }
         }
         
         private ICommand _changeDatabasePathCommand;
@@ -69,26 +74,17 @@ namespace Imagio.Helpdesk.ViewModel
                 _checkSignCommand = _checkSignCommand ?? new RelayCommand(
                     () =>
                     {
-                        if (String.IsNullOrEmpty(_login) || String.IsNullOrEmpty(_password))
-                        {
-                            if (Signed != null)
-                                Signed(this, new SignedEventArgs(null));
-                            return;
-                        }
-
-                        //using (var context = new FakeContext())
+                        _generateDataBase();
+                        using (var context = new HelpdeskContext())
                         {
                             Account account = null;
                             try
                             {
-                                /*
-                                account = context.Accounts.Local.Single(w => w.Login == _login);
+                                account = context.Accounts.Single(w => w.Login == _login && w.IsActive);
                                 var pwd = Hash.ToString(account.Password);
                                 var pwd_check = Hash.ToString(_password);
 
                                 account = pwd == pwd_check ? account : null;
-                                 * */
-                                account = new Account();
                             }
                             catch
                             {
@@ -99,6 +95,29 @@ namespace Imagio.Helpdesk.ViewModel
                         }
                     });
                 return _checkSignCommand;
+            }
+        }
+
+        private void _generateDataBase()
+        {
+            Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0");
+            var connection = Database.DefaultConnectionFactory.CreateConnection(String.Format("Data Source={0}", Properties.Settings.Default.DatabasePath));
+            App.DatabaseConnection = connection;
+            if (!Database.Exists(connection))
+            {
+                Waiter.WaitHandler.Run(() =>
+                    {
+                        using (var context = new HelpdeskContext())
+                        {
+                            context.Database.CreateIfNotExists();
+                            Account account = new Account();
+                            account.Login = "root";
+                            account.Password = Hash.Calc("root");
+                            account.IsActive = true;
+                            context.Set<Account>().Add(account);
+                            context.SaveChanges();
+                        }
+                    });
             }
         }
     }

@@ -24,7 +24,44 @@
                                         </DataTemplate>
                                     </selector:Template.DataTemplate>
                                 </selector:Template>
+
+                                <selector:Template Value="{x:Type model:Account}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:AccountWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:Employee}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:EmployeeWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+
                                 <selector:Template Value="{x:Type model:Firm}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:SimpleWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:CartridgeType}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:SimpleWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:ConsumableType}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:SimpleWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:HardwareType}">
                                     <selector:Template.DataTemplate>
                                         <DataTemplate>
                                             <workspaceView:SimpleWorkspaceView />
