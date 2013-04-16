@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Производитель
     /// </summary>
-    public class Firm: IEntity
+    public class Firm : EntityModel, IEntity
     {
         [Key]
         public Guid Id { get; set; }

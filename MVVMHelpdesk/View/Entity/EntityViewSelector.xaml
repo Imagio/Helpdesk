@@ -17,5 +17,14 @@
     <DataTemplate DataType="{x:Type entityViewModel:FirmViewModel}">
         <entityView:SimpleView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type entityViewModel:CartridgeTypeViewModel}">
+        <entityView:SimpleView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type entityViewModel:ConsumableTypeViewModel}">
+        <entityView:SimpleView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type entityViewModel:HardwareTypeViewModel}">
+        <entityView:SimpleView />
+    </DataTemplate>
     
 </ResourceDictionary>

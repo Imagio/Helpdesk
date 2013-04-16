@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Тип оборудования
     /// </summary>
-    public class HardwareType: IEntity
+    public class HardwareType : EntityModel, IEntity
     {
         [Key]
         [Required]

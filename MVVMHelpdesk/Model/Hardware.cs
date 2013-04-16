@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Оборудование
     /// </summary>
-    public class Hardware: IEntity
+    public class Hardware : EntityModel, IEntity
     {
         [Key]
         public Guid Id { get; set; }

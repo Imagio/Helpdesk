@@ -89,6 +89,7 @@
     <Compile Include="Model\CartridgeType.cs" />
     <Compile Include="Model\Consumable.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\EntityModel.cs" />
     <Compile Include="Model\Firm.cs" />
     <Compile Include="Model\Hardware.cs" />
     <Compile Include="Model\HardwareType.cs" />
@@ -100,9 +101,12 @@
     <Compile Include="TemplateSelector\GenericTemplateSelector.cs" />
     <Compile Include="ViewModel\BackupViewModel.cs" />
     <Compile Include="ViewModel\Entity\AccountViewModel.cs" />
+    <Compile Include="ViewModel\Entity\CartridgeTypeViewModel.cs" />
+    <Compile Include="ViewModel\Entity\ConsumableTypeViewModel.cs" />
     <Compile Include="ViewModel\Entity\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\FirmViewModel.cs" />
+    <Compile Include="ViewModel\Entity\HardwareTypeViewModel.cs" />
     <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />

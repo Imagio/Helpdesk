@@ -29,7 +29,7 @@ namespace Imagio.Helpdesk.ViewModel
             DirectoryMenuCollection.Add(new MenuItem("Производители", () => _addEntityTab<Firm>("Производители")));
             DirectoryMenuCollection.Add(new MenuItem("Типы картриджей", () => _addEntityTab<CartridgeType>("Типы картриджей")));
             DirectoryMenuCollection.Add(new MenuItem("Типы расходных материалов", () => _addEntityTab<ConsumableType>("Типы расходных материалов")));
-            DirectoryMenuCollection.Add(new MenuItem("Типы аппаратного обеспечения", () => _addEntityTab<ConsumableType>("Типы аппаратного обеспечения")));
+            DirectoryMenuCollection.Add(new MenuItem("Типы аппаратного обеспечения", () => _addEntityTab<HardwareType>("Типы аппаратного обеспечения")));
         }
 
         public void AddTab(TabViewModel tabViewModel)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using Imagio.Helpdesk.Model;
@@ -10,7 +11,9 @@ namespace Imagio.Helpdesk.ViewModel.Entity
     public class AccountViewModel: EntityViewModel<Account>
     {
         public AccountViewModel(Account model, HelpdeskContext context)
-            :base(model, context) { }
+            :base(model, context) 
+        {
+        }
 
         public string Password 
         {

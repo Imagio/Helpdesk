@@ -82,6 +82,7 @@ namespace Imagio.Helpdesk.ViewModel
                     {
                         if (String.IsNullOrEmpty(_selectedFile))
                             return;
+                        var databasePath = Properties.Settings.Default.DatabasePath;
                     });
                 return _restoreDatabaseCommand;
             }

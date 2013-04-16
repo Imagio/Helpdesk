@@ -13,11 +13,11 @@
             <ColumnDefinition Width="300" />
         </Grid.ColumnDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Content="Фамилия" />
-        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding Path=Model.LastName}" />
+        <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="{Binding Path=Model.LastName, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
         <Label Grid.Column="0" Grid.Row="1" Content="Имя" />
-        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding Path=Model.FirstName}" />
+        <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Text="{Binding Path=Model.FirstName, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
         <Label Grid.Column="0" Grid.Row="2" Content="Отчество" />
-        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding Path=Model.SecondName}" />
+        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Text="{Binding Path=Model.SecondName, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
     </Grid>
     
 </UserControl>

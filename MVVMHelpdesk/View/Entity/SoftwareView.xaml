@@ -19,8 +19,8 @@
         <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" 
                  Text="{Binding Model.Name, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
         <Label Grid.Column="0" Grid.Row="1" Content="Производитель" />
-        <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Path=Model.Maker}" ItemsSource="{Binding Path=FirmCollection}" VerticalAlignment="Center" DisplayMemberPath="Name" />
+        <ComboBox Grid.Column="1" Grid.Row="1" SelectedItem="{Binding Path=Model.Maker, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=FirmCollection}" VerticalAlignment="Center" DisplayMemberPath="Name" />
         <Label Grid.Column="0" Grid.Row="2" Content="Ответственный специалист" />
-        <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Path=Model.Master}" ItemsSource="{Binding Path=EmployeeCollection}" VerticalAlignment="Center" DisplayMemberPath="ShortName" />
+        <ComboBox Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Path=Model.Master, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=EmployeeCollection}" VerticalAlignment="Center" DisplayMemberPath="ShortName" />
     </Grid>
 </UserControl>

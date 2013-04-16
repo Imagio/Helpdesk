@@ -9,7 +9,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Картридж
     /// </summary>
-    public class Cartridge: IEntity
+    public class Cartridge : EntityModel, IEntity
     {
         [Key]
         public Guid Id { get; set; }

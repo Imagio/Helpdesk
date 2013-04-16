@@ -15,9 +15,9 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Имя пользователя" />
         <Label Grid.Column="0" Grid.Row="1" Content="Пароль" />
         <Label Grid.Column="0" Grid.Row="2" Content="Активная учетная запись" />
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Model.Login}" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Path=Model.Login, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" />
         <PasswordBox Grid.Column="1" Grid.Row="1" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Center" />
-        <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding Path=Model.IsActive}" VerticalAlignment="Center" />
+        <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding Path=Model.IsActive, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" />
     </Grid>
     
 </UserControl>

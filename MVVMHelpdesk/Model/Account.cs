@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Imagio.Helpdesk.Model
     /// <summary>
     /// Аккаунт пользователя
     /// </summary>
-    public class Account: IEntity
+    public class Account: EntityModel, IEntity
     {
         [Key]
         public Guid Id { get; set; }
@@ -35,6 +36,7 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [Display(Name="Активная учетная запись")]
+        [DefaultValue(true)]
         public Boolean IsActive { get; set; }
 
         /// <summary>
