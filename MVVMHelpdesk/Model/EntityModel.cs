@@ -25,9 +25,13 @@ namespace Imagio.Helpdesk.Model
                 var validationMap = prop
                     .GetCustomAttributes(typeof(ValidationAttribute), true)
                     .Cast<ValidationAttribute>();
+
+                var property = prop.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault();
+                var propertyName = property == null ? columnName : property.Name;
+
                 foreach(var v in validationMap) {
                     try {
-                        v.Validate(prop.GetValue(this, null), columnName);
+                        v.Validate(prop.GetValue(this, null), propertyName);
                     } catch (Exception ex) {
                         return ex.Message;
                     }

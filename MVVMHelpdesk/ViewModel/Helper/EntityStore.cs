@@ -17,13 +17,13 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         {
             { typeof(Account), typeof(AccountViewModel) },
             { typeof(Cartridge), typeof(EntityViewModel<Cartridge>) },
-            { typeof(CartridgeType), typeof(EntityViewModel<CartridgeType>) },
+            { typeof(CartridgeType), typeof(CartridgeTypeViewModel) },
             { typeof(Consumable), typeof(EntityViewModel<Consumable>) },
-            { typeof(ConsumableType), typeof(EntityViewModel<ConsumableType>) },
+            { typeof(ConsumableType), typeof(ConsumableTypeViewModel) },
             { typeof(Employee), typeof(EmployeeViewModel) },
             { typeof(Firm), typeof(FirmViewModel) },
             { typeof(Hardware), typeof(EntityViewModel<Hardware>)},
-            { typeof(HardwareType), typeof(EntityViewModel<HardwareType>) },
+            { typeof(HardwareType), typeof(HardwareTypeViewModel) },
             { typeof(Software), typeof(SoftwareViewModel) }
 
         };

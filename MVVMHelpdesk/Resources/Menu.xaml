@@ -6,6 +6,8 @@
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Foreground" Value="#1B293E" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Menu">
@@ -136,6 +138,8 @@
 
     <!-- MenuItem Style -->
     <Style x:Key="{x:Type MenuItem}" TargetType="MenuItem">
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Foreground" Value="#1B293E" />
         <Style.Triggers>
             <Trigger Property="Role" Value="TopLevelHeader">

@@ -5,7 +5,7 @@
         WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
         WindowStyle="SingleBorderWindow" ResizeMode="NoResize" MouseDown="Window_MouseDown"
         Icon="/MVVMHelpdesk;component/Images/lock.png" Title="Вход в систему"
-        Background="#F0F0F0">
+        Background="#D6DBE9">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing">
@@ -18,12 +18,12 @@
             <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
             <Label  Content="Имя пользователя" />
         </StackPanel>
-        <TextBox Margin="0 0 0 5" Padding="3" Text="{Binding Path=Login}" />
+        <TextBox Margin="0 0 0 5" Text="{Binding Path=Login}" />
         <StackPanel Orientation="Horizontal">
             <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/key.png" />
             <Label Content="Пароль" />
         </StackPanel>
-        <PasswordBox Margin="0 0 0 5" Padding="3" PasswordChanged="PasswordBox_PasswordChanged" />
+        <PasswordBox Margin="0 0 0 5" PasswordChanged="PasswordBox_PasswordChanged" />
         <Expander Header="Настройка подключения" Margin="0 0 0 5" >
             <Grid>
                 <Grid.ColumnDefinitions>

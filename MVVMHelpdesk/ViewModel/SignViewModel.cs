@@ -80,15 +80,19 @@ namespace Imagio.Helpdesk.ViewModel
                             Account account = null;
                             try
                             {
-                                account = context.Accounts.Single(w => w.Login == _login && w.IsActive);
+                                account = context.Accounts.FirstOrDefault(w => w.Login == _login && w.IsActive);
                                 var pwd = Hash.ToString(account.Password);
                                 var pwd_check = Hash.ToString(_password);
 
                                 account = pwd == pwd_check ? account : null;
                             }
-                            catch
+                            catch (NullReferenceException)
                             {
-
+                                account = null;
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.MessageBox.Show(ex.Message);
                             }
                             if (Signed != null)
                                 Signed(this, new SignedEventArgs(account));

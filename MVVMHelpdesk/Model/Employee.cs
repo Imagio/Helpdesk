@@ -20,6 +20,7 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [Display(Name="Имя")]
+        [MinLength(1)]
         public String FirstName { get; set; }
 
         /// <summary>
@@ -27,6 +28,7 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [Display(Name="Отчество")]
+        [MinLength(1)]
         public String SecondName { get; set; }
 
         /// <summary>
@@ -34,6 +36,7 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [Display(Name="Фамилия")]
+        [MinLength(1)]
         public String LastName { get; set; }
 
         [NotMapped]
