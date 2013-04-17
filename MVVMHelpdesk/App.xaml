@@ -6,6 +6,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/DataGrid.xaml"  />
                 <ResourceDictionary Source="Resources/TextBox.xaml"  />
+                <ResourceDictionary Source="Resources/ComboBox.xaml"  />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

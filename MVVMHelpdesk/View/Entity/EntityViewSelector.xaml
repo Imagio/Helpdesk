@@ -6,7 +6,14 @@
     <DataTemplate DataType="{x:Type entityViewModel:SoftwareViewModel}">
         <entityView:SoftwareView />
     </DataTemplate>
-    
+    <DataTemplate DataType="{x:Type entityViewModel:CartridgeViewModel}">
+        <entityView:CartridgeView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type entityViewModel:ConsumableViewModel}">
+        <entityView:ConsumableView />
+    </DataTemplate>
+
+
     <DataTemplate DataType="{x:Type entityViewModel:AccountViewModel}">
         <entityView:AccountView />
     </DataTemplate>

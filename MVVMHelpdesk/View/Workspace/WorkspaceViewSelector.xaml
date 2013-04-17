@@ -24,6 +24,27 @@
                                         </DataTemplate>
                                     </selector:Template.DataTemplate>
                                 </selector:Template>
+                                <selector:Template Value="{x:Type model:Hardware}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:HardwareWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:Cartridge}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:CartridgeWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
+                                <selector:Template Value="{x:Type model:Consumable}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:ConsumableWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
 
                                 <selector:Template Value="{x:Type model:Account}">
                                     <selector:Template.DataTemplate>

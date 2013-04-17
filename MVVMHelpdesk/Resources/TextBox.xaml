@@ -15,16 +15,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
                         <Border x:Name="Borders" BorderThickness="1" CornerRadius="0"
-                                BorderBrush="#6084C4" Background="{TemplateBinding Background}">
+                                BorderBrush="#8591A2" Background="{TemplateBinding Background}">
                             <ScrollViewer VerticalAlignment="Center" HorizontalAlignment="Stretch" 
                                           Margin="4" x:Name="PART_ContentHost"/>
                         </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Borders" Property="BorderBrush" Value="#445E8C" />
+                            <Setter TargetName="Borders" Property="BorderBrush" Value="#E5C365" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="Borders" Property="BorderBrush" Value="#293955" />
+                            <Setter TargetName="Borders" Property="BorderBrush" Value="#E5C365" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -59,16 +59,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
                     <Border x:Name="Borders" BorderThickness="1" CornerRadius="0"
-                                BorderBrush="#6084C4" Background="{TemplateBinding Background}">
+                                BorderBrush="#8591A2" Background="{TemplateBinding Background}">
                         <ScrollViewer VerticalAlignment="Center" HorizontalAlignment="Stretch" 
                                           Margin="4" x:Name="PART_ContentHost"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Borders" Property="BorderBrush" Value="#445E8C" />
+                            <Setter TargetName="Borders" Property="BorderBrush" Value="#E5C365" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="Borders" Property="BorderBrush" Value="#293955" />
+                            <Setter TargetName="Borders" Property="BorderBrush" Value="#E5C365" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

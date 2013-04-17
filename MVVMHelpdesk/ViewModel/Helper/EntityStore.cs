@@ -16,9 +16,9 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         private static Dictionary<Type, Type> _entityViewModelDictionary = new Dictionary<Type, Type>
         {
             { typeof(Account), typeof(AccountViewModel) },
-            { typeof(Cartridge), typeof(EntityViewModel<Cartridge>) },
+            { typeof(Cartridge), typeof(CartridgeViewModel) },
             { typeof(CartridgeType), typeof(CartridgeTypeViewModel) },
-            { typeof(Consumable), typeof(EntityViewModel<Consumable>) },
+            { typeof(Consumable), typeof(ConsumableViewModel) },
             { typeof(ConsumableType), typeof(ConsumableTypeViewModel) },
             { typeof(Employee), typeof(EmployeeViewModel) },
             { typeof(Firm), typeof(FirmViewModel) },

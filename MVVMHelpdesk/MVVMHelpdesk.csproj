@@ -102,7 +102,9 @@
     <Compile Include="ViewModel\BackupViewModel.cs" />
     <Compile Include="ViewModel\Entity\AccountViewModel.cs" />
     <Compile Include="ViewModel\Entity\CartridgeTypeViewModel.cs" />
+    <Compile Include="ViewModel\Entity\CartridgeViewModel.cs" />
     <Compile Include="ViewModel\Entity\ConsumableTypeViewModel.cs" />
+    <Compile Include="ViewModel\Entity\ConsumableViewModel.cs" />
     <Compile Include="ViewModel\Entity\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
     <Compile Include="ViewModel\Entity\FirmViewModel.cs" />
@@ -128,6 +130,12 @@
     <Compile Include="View\Entity\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Entity\CartridgeView.xaml.cs">
+      <DependentUpon>CartridgeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Entity\ConsumableView.xaml.cs">
+      <DependentUpon>ConsumableView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Entity\EmployeeView.xaml.cs">
       <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
@@ -143,8 +151,17 @@
     <Compile Include="View\Workspace\AccountWorkspaceView.xaml.cs">
       <DependentUpon>AccountWorkspaceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Workspace\CartridgeWorkspaceView.xaml.cs">
+      <DependentUpon>CartridgeWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\ConsumableWorkspaceView.xaml.cs">
+      <DependentUpon>ConsumableWorkspaceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Workspace\EmployeeWorkspaceView.xaml.cs">
       <DependentUpon>EmployeeWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\HardwareWorkspaceView.xaml.cs">
+      <DependentUpon>HardwareWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workspace\SimpleWorkspaceView.xaml.cs">
       <DependentUpon>SimpleWorkspaceView.xaml</DependentUpon>
@@ -155,6 +172,10 @@
     <Compile Include="View\Workspace\WorkspaceToolsView.xaml.cs">
       <DependentUpon>WorkspaceToolsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +213,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Entity\AccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\CartridgeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Entity\ConsumableView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,7 +262,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Workspace\CartridgeWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\ConsumableWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Workspace\EmployeeWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\HardwareWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
