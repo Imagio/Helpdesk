@@ -9,6 +9,8 @@ using System.Reflection;
 using System.Windows.Input;
 using Imagio.Helpdesk.ViewModel.Helper;
 using System.Data.Entity.Validation;
+using System.Collections.ObjectModel;
+using Imagio.Helpdesk.ViewModel.Helper.ViewGenerator;
 
 namespace Imagio.Helpdesk.ViewModel.Entity
 {
@@ -31,6 +33,9 @@ namespace Imagio.Helpdesk.ViewModel.Entity
 
             Model = model;
             Context = context;
+
+            DataItemCollection = new ObservableCollection<DataItem>();
+            AddDataItems();
         }
 
         public TE Model { get; private set; }
@@ -128,6 +133,11 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 });
                 return _cancelCommand;
             }
+        }
+
+        public ObservableCollection<DataItem> DataItemCollection { get; private set; }
+        protected virtual void AddDataItems()
+        {
         }
     }
 }

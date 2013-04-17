@@ -82,6 +82,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
+    <Compile Include="View\Helper\PasswordHelper.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Events\SignedEventArgs.cs" />
     <Compile Include="Model\Account.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
+    <Compile Include="ViewModel\Helper\ViewGenerator\DataItem.cs" />
     <Compile Include="ViewModel\MenuItem.cs" />
     <Compile Include="ViewModel\SignViewModel.cs" />
     <Compile Include="ViewModel\Helper\WindowViewModel.cs" />
