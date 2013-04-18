@@ -14,7 +14,11 @@ using Imagio.Helpdesk.ViewModel.Helper.ViewGenerator;
 
 namespace Imagio.Helpdesk.ViewModel.Entity
 {
-    public abstract class EntityViewModel<TE>: ViewModelBase, IDataErrorInfo where TE: class
+    public abstract class EntityViewModel : ViewModelBase
+    {
+    }
+
+    public class EntityViewModel<TE>: EntityViewModel, IDataErrorInfo where TE: class
     {
         public delegate void SaveEventHandler(object sender);
         public event SaveEventHandler OnSave;
@@ -138,6 +142,32 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         public ObservableCollection<DataItem> DataItemCollection { get; private set; }
         protected virtual void AddDataItems()
         {
+            var propertyList = Model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty).Where(w => w.GetSetMethod() != null).ToList();
+            foreach (var property in propertyList)
+            {
+                var propertyType = property.PropertyType;
+                if (propertyType == typeof(String))
+                {
+                    DataItemCollection.Add(new StringDataItem(Model, property.Name));
+                } 
+                else if (propertyType == typeof(byte[]))
+                {
+                    DataItemCollection.Add(new PasswordDataItem(Model, property.Name));
+                }
+                else if (propertyType == typeof(bool))
+                {
+                    DataItemCollection.Add(new BoolDataItem(Model, property.Name));
+                }
+                else if (propertyType.BaseType == typeof(EntityModel))
+                {
+                    var path = "";
+                    if (propertyType == typeof(Employee))
+                        path = "ShortName";
+                    else
+                        path = "Name";
+                    DataItemCollection.Add(new CollectionDataItem(Model, property.Name, Context, propertyType, path));
+                }
+            }
         }
     }
 }

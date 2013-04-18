@@ -21,7 +21,7 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         {
             base.AddDataItems();
             DataItemCollection.Add(new StringDataItem(Model, m => (m as Account).Login));
-            DataItemCollection.Add(new PasswordDataItem(Model, m => (m as Account).Password, o => { return Helper.Hash.Calc(o.ToString()); }));
+            DataItemCollection.Add(new PasswordDataItem(Model, m => (m as Account).Password));
             DataItemCollection.Add(new BoolDataItem(Model, m => (m as Account).IsActive));
         }
 

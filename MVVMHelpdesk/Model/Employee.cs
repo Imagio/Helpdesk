@@ -16,6 +16,14 @@ namespace Imagio.Helpdesk.Model
         public Guid Id { get; set; }
 
         /// <summary>
+        /// Фамилия
+        /// </summary>
+        [Required]
+        [Display(Name = "Фамилия")]
+        [MinLength(1)]
+        public String LastName { get; set; }
+
+        /// <summary>
         /// Имя
         /// </summary>
         [Required]
@@ -30,14 +38,6 @@ namespace Imagio.Helpdesk.Model
         [Display(Name="Отчество")]
         [MinLength(1)]
         public String SecondName { get; set; }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        [Required]
-        [Display(Name="Фамилия")]
-        [MinLength(1)]
-        public String LastName { get; set; }
 
         [NotMapped]
         public string FullName

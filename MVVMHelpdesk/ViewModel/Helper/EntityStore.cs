@@ -32,8 +32,9 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         {
             if (_entityViewModelDictionary.ContainsKey(typeof(TE)))
             {
-                Type viewModelType = _entityViewModelDictionary[typeof(TE)];
-                return viewModelType == null ? null : Activator.CreateInstance(viewModelType, model, context) as EntityViewModel<TE>;
+                return new EntityViewModel<TE>(model, context);
+                //Type viewModelType = EntityViewModel<TE>; //_entityViewModelDictionary[typeof(TE)];
+                // return viewModelType == null ? null : Activator.CreateInstance(viewModelType, model, context) as EntityViewModel<TE>;
             }
             return null;
         }
@@ -57,6 +58,15 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             { typeof(HardwareType), o => o.Set<HardwareType>() },
             { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) }
         };
+
+        public static IQueryable<Object> EntityQuery(HelpdeskContext context, Type type)
+        {
+            if (_entityQuery.ContainsKey(type))
+            {
+                return _entityQuery[type].Invoke(context) as IQueryable<Object>;
+            }
+            return context.Set(type) as IQueryable<Object>;
+        }
 
         public static IQueryable<TE> EntityQuery<TE>(HelpdeskContext context) where TE: class, IEntity
         {

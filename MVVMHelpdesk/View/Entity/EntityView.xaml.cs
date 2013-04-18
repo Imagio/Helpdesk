@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Imagio.Helpdesk.View.Entity
 {
     /// <summary>
-    /// Логика взаимодействия для CartridgeView.xaml
+    /// Логика взаимодействия для EntityView.xaml
     /// </summary>
-    public partial class CartridgeView : UserControl
+    public partial class EntityView : UserControl
     {
-        public CartridgeView()
+        public EntityView()
         {
             InitializeComponent();
         }

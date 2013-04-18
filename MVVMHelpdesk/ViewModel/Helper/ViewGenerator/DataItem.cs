@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
@@ -8,8 +9,20 @@ using System.Text;
 
 namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
 {
-    public class DataItem : ViewModelBase
+    public class DataItem : ViewModelBase, IDataErrorInfo
     {
+        public DataItem(Object model, string property, Func<Object, Object> setter = null)
+        {
+            _setter = setter;
+
+            Model = model;
+            PropertyName = property;
+
+            _propertyInfo = model.GetType().GetProperty(PropertyName);
+            var propertyAttribute = _propertyInfo.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().FirstOrDefault();
+            Label = propertyAttribute == null ? PropertyName : propertyAttribute.Name;
+        }
+
         public DataItem(Object model, Expression<Func<Object, Object>> property, Func<Object, Object> setter = null )
         {
             _setter = setter;
@@ -55,6 +68,19 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
                 Object newValue = _setter != null ? _setter(value) : value;
                 _propertyInfo.SetValue(Model, newValue, null);
                 OnPropertyChanged(() => Value);
+            }
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get 
+            {
+                return (Model as IDataErrorInfo)[PropertyName];
             }
         }
     }

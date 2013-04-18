@@ -1,6 +1,8 @@
 ﻿<Window x:Class="Imagio.Helpdesk.View.DialogView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:entityViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Entity"
+        xmlns:entityView="clr-namespace:Imagio.Helpdesk.View.Entity"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" Background="#D6DBE9" 
         Icon="/MVVMHelpdesk;component/Images/application_view_detail.png" ResizeMode="CanMinimize">
@@ -8,8 +10,12 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Entity/EntityViewSelector.xaml" />
                 <ResourceDictionary Source="/MVVMHelpdesk;component/Resources/Converters.xaml" />
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type entityViewModel:EntityViewModel}">
+                        <entityView:EntityView />
+                    </DataTemplate>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
