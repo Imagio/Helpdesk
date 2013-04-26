@@ -38,5 +38,8 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Display(Name="Ответственный специалист")]
         public Employee Master { get; set; }
+
+        [Display(Name = "Инвентарный номер")]
+        public string InventoryNumber { get; set; }
     }
 }

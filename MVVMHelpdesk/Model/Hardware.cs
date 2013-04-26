@@ -24,7 +24,7 @@ namespace Imagio.Helpdesk.Model
         [Display(Name = "Тип")]
         public HardwareType HardwareType { get; set; }
 
-        [Display(Name="Производитель")]
+        [Display(Name = "Производитель")]
         public Firm Maker { get; set; }
 
         [Display(Name = "Ответственный специалист")]

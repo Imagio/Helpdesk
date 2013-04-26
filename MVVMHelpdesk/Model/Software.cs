@@ -18,13 +18,13 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
-        [Display(Name="Наименование")]
+        [Display(Name = "Наименование")]
         public String Name { get; set; }
 
         /// <summary>
         /// Ответственный специалист
         /// </summary>
-        [Display(Name="Ответственный специалист")]
+        [Display(Name = "Ответственный специалист")]
         public Employee Master { get; set; }
 
         /// <summary>
@@ -32,5 +32,8 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Display(Name = "Производитель")]
         public Firm Maker { get; set; }
+
+        [Display(Name = "Инвентарный номер")]
+        public String InventoryNumber { get; set; }
     }
 }

@@ -56,6 +56,7 @@ namespace Imagio.Helpdesk.ViewModel
                         {
                             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
                             openFileDialog.Filter = "Файл БД MS SQL Compact*.sdf|*.sdf";
+                            openFileDialog.FileName = DatabasePath;
                             openFileDialog.Multiselect = false;
                             if (openFileDialog.ShowDialog() == true)
                             {
