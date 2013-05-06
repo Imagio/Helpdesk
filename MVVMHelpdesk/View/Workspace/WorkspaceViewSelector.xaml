@@ -89,6 +89,14 @@
                                         </DataTemplate>
                                     </selector:Template.DataTemplate>
                                 </selector:Template>
+                                
+                                <selector:Template Value="{x:Type model:ConsumableAccounting}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:ConsumableAccountingWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
                             </selector:TemplateCollection>
                         </Setter.Value>
                     </Setter>

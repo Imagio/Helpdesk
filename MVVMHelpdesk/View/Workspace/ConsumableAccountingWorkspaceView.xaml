@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.ConsumableAccountingWorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="collection" Source="{Binding Path=ItemColletion}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Consumable" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+    
+    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}" ItemsSource="{Binding Source={StaticResource ResourceKey=collection}}">
+        <DataGrid.Columns>
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Image UseLayoutRounding="True" Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/bullet_add.png" Visibility="{Binding Path=Sign, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}" />
+                            <Image UseLayoutRounding="True" Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/bullet_delete.png" Visibility="{Binding Path=Sign, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}, ConverterParameter=1}" />
+                        </Grid>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Binding="{Binding Path=Date, Converter={StaticResource ResourceKey=DateConverter}}" Header="Дата" />
+            <DataGridTextColumn Binding="{Binding Path=Consumable.Name}" Header="Расходный материал" />
+            <DataGridTextColumn Binding="{Binding Path=Consumable.Article}" Header="Артикул" />
+            <DataGridTextColumn Binding="{Binding Path=Count}" Header="Количество" />
+        </DataGrid.Columns>
+        <DataGrid.GroupStyle>
+            <!-- Style for groups at top level. -->
+            <GroupStyle>
+                <GroupStyle.ContainerStyle>
+                    <Style TargetType="{x:Type GroupItem}">
+                        <Setter Property="Margin" Value="0,0,0,5"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                    <Expander IsExpanded="True" HorizontalContentAlignment="Stretch">
+                                        <Expander.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Name.Name}" Margin="5,0,0,0"/>
+                                                <TextBlock Text=" (записей - " />
+                                                <TextBlock Text="{Binding Path=ItemCount}" />
+                                                <TextBlock Text=") " />
+                                                <Image Margin="20 0 0 0" Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/sum.png" />
+                                                <TextBlock FontWeight="Bold" Text="=" />
+                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Name, Converter={StaticResource ResourceKey=ConsumableConverter}}" Margin="5,0,0,0"/>
+                                            </StackPanel>
+                                        </Expander.Header>
+                                        <Expander.Content>
+                                            <ItemsPresenter />
+                                        </Expander.Content>
+                                    </Expander>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </GroupStyle.ContainerStyle>
+            </GroupStyle>
+        </DataGrid.GroupStyle>
+    </DataGrid>
+</UserControl>

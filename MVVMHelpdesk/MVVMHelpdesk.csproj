@@ -95,7 +95,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\ConsumableConverter.cs" />
+    <Compile Include="Converter\DateConverter.cs" />
+    <Compile Include="Model\ConsumableAccounting.cs" />
     <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
+    <Compile Include="ViewModel\Service\ConsumableAccountingWorkspace.cs" />
     <Compile Include="View\Entity\EntityView.xaml.cs">
       <DependentUpon>EntityView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +159,9 @@
     <Compile Include="View\Workspace\CartridgeWorkspaceView.xaml.cs">
       <DependentUpon>CartridgeWorkspaceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Workspace\ConsumableAccountingWorkspaceView.xaml.cs">
+      <DependentUpon>ConsumableAccountingWorkspaceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Workspace\ConsumableWorkspaceView.xaml.cs">
       <DependentUpon>ConsumableWorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -186,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DatePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Workspace\CartridgeWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\ConsumableAccountingWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,6 +414,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\tag_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bullet_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sum.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

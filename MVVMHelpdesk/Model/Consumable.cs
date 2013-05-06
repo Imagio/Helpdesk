@@ -46,9 +46,5 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Display(Name="Тип")]
         public ConsumableType ConsumableType { get; set; }
-
-        [Display(Name = "Количество")]
-        [DefaultValue(0)]
-        public Int32 Count { get; set; }
     }
 }

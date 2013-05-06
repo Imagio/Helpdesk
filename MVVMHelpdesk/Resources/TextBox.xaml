@@ -11,10 +11,11 @@
         <Setter Property="Background" Value="White" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                        <Border x:Name="Borders" BorderThickness="1" CornerRadius="0"
+                        <Border x:Name="Borders" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0"
                                 BorderBrush="#8591A2" Background="{TemplateBinding Background}">
                             <ScrollViewer VerticalAlignment="Center" HorizontalAlignment="Stretch" 
                                           Margin="4" x:Name="PART_ContentHost"/>

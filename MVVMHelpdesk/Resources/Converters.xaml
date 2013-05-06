@@ -3,5 +3,7 @@
                     xmlns:converter="clr-namespace:Imagio.Helpdesk.Converter">
 
     <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    <converter:DateConverter x:Key="DateConverter" />
+    <converter:ConsumableConverter x:Key="ConsumableConverter" />
     
 </ResourceDictionary>

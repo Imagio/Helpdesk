@@ -7,7 +7,7 @@
         xmlns:backupView="clr-namespace:Imagio.Helpdesk.View.Backup"
         xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper" 
         xmlns:Converter="clr-namespace:Imagio.Helpdesk.Converter" x:Class="Imagio.Helpdesk.View.ShellView" 
-        Title="MainWindow" WindowState="Maximized" Background="#D6DBE9" Icon="/MVVMHelpdesk;component/Images/application.png">
+        WindowState="Maximized" Background="#D6DBE9" Icon="/MVVMHelpdesk;component/Images/application.png">
 
     <Window.Resources>
         <ResourceDictionary>

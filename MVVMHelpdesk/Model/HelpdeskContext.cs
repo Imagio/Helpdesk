@@ -66,5 +66,10 @@ namespace Imagio.Helpdesk.Model
         /// Программное обеспечение
         /// </summary>
         public DbSet<Software> Softwares { get; set; }
+
+        /// <summary>
+        /// Учет расходников
+        /// </summary>
+        public DbSet<ConsumableAccounting> ConsumableAccountings { get; set; }
     }
 }

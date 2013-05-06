@@ -12,7 +12,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
     internal static class EntityStore
     {
         #region ViewModel
-
+        /*
         private static Dictionary<Type, Type> _entityViewModelDictionary = new Dictionary<Type, Type>
         {
             { typeof(Account), typeof(AccountViewModel) },
@@ -22,21 +22,23 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             { typeof(ConsumableType), typeof(ConsumableTypeViewModel) },
             { typeof(Employee), typeof(EmployeeViewModel) },
             { typeof(Firm), typeof(FirmViewModel) },
-            { typeof(Hardware), typeof(EntityViewModel<Hardware>)},
+            { typeof(Hardware), typeof(EntityViewModel<Hardware>) },
             { typeof(HardwareType), typeof(HardwareTypeViewModel) },
-            { typeof(Software), typeof(SoftwareViewModel) }
+            { typeof(Software), typeof(SoftwareViewModel) },
+            { typeof(ConsumableAccounting), typeof(ConsumableAccountingViewModel) }
 
-        };
+        };*/
 
         public static EntityViewModel<TE> ViewModel<TE>(TE model, HelpdeskContext context) where TE : class, IEntity
         {
+            return new EntityViewModel<TE>(model, context);
+            /*
             if (_entityViewModelDictionary.ContainsKey(typeof(TE)))
             {
-                return new EntityViewModel<TE>(model, context);
-                //Type viewModelType = EntityViewModel<TE>; //_entityViewModelDictionary[typeof(TE)];
-                // return viewModelType == null ? null : Activator.CreateInstance(viewModelType, model, context) as EntityViewModel<TE>;
+                Type viewModelType = EntityViewModel<TE>; //_entityViewModelDictionary[typeof(TE)];
+                return viewModelType == null ? null : Activator.CreateInstance(viewModelType, model, context) as EntityViewModel<TE>;
             }
-            return null;
+            return null;*/
         }
 
         #endregion
@@ -54,9 +56,10 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             { typeof(ConsumableType), o => o.Set<ConsumableType>() },
             { typeof(Employee), o => o.Set<Employee>() },
             { typeof(Firm), o => o.Set<Firm>() },
-            { typeof(Hardware), o => o.Set<Hardware>() },
+            { typeof(Hardware), o => o.Set<Hardware>().Include(i => i.Maker).Include(i => i.Master) },
             { typeof(HardwareType), o => o.Set<HardwareType>() },
-            { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) }
+            { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) },
+            { typeof(ConsumableAccounting), o => o.Set<ConsumableAccounting>().Include(i => i.Consumable).Include(i => i.Employee)}
         };
 
         public static IQueryable<Object> EntityQuery(HelpdeskContext context, Type type)

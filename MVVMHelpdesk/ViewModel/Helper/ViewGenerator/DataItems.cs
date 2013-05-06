@@ -44,9 +44,31 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
     public class IntDataItem : DataItem
     {
         public IntDataItem(Object model, Expression<Func<Object, Object>> property)
-            : base(model, property) { }
+            : base(model, property, o =>
+                {
+                    int res = 0;
+                    try
+                    {
+                        Int32.TryParse(o.ToString(), out res);
+                    }
+                    finally
+                    {
+                    }
+                    return res;
+                }) { }
         public IntDataItem(Object model, String property)
-            : base(model, property) { }
+            : base(model, property, o =>
+            {
+                int res = 0;
+                try
+                {
+                    Int32.TryParse(o.ToString(), out res);
+                }
+                finally
+                {
+                }
+                return res;
+            }) { }
     }
 
     public class CollectionDataItem: DataItem

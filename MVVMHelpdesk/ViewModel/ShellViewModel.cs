@@ -144,5 +144,18 @@ namespace Imagio.Helpdesk.ViewModel
                 return _backupMenuCommand;
             }
         }
+
+        private ICommand _serviceConsumableCommand;
+        public ICommand ServiceConsumableCommand
+        {
+            get
+            {
+                _serviceConsumableCommand = _serviceConsumableCommand ?? new RelayCommand(() =>
+                {
+                    _addEntityTab<ConsumableAccounting>("Учет расходных материалов");
+                });
+                return _serviceConsumableCommand;
+            }
+        }
     }
 }

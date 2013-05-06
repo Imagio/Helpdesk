@@ -16,18 +16,5 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         {
             
         }
-
-        protected override void AddDataItems()
-        {
-            base.AddDataItems();
-            DataItemCollection.Add(new StringDataItem(Model, m => (m as Account).Login));
-            DataItemCollection.Add(new PasswordDataItem(Model, m => (m as Account).Password));
-            DataItemCollection.Add(new BoolDataItem(Model, m => (m as Account).IsActive));
-        }
-
-        public string Password 
-        {
-            set { Model.Password = Helper.Hash.Calc(value); }
-        }
     }
 }
