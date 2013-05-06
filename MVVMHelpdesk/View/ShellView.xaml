@@ -54,9 +54,46 @@
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Картриджы" IsCheckable="True" Command="{Binding CartridgeMenuCommand}" >
+                <MenuItem Header="Картриджи" IsCheckable="True" Command="{Binding CartridgeMenuCommand}" >
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Сервисный центр">
+                <MenuItem Header="Учет расходных материалов" Command="{Binding Path=ServiceConsumableCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/tag_blue.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Учет заправок картриджей" Command="{Binding Path=ServiceCartridgeCommand}">
+                <MenuItem.Icon>
+                    <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/tag_blue.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+           <Separator />
+                <MenuItem Header="Прогнозирование заправок картриджей" Command="{Binding Path=ServiceMathCommand}">
+                <MenuItem.Icon>
+                    <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/chart_line.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+
+            </MenuItem>
+            <MenuItem Header="Отчеты">
+                <MenuItem Header="Движение оборудования" Command="{Binding Path=ReportMoveMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/report.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="История изменения состояния оборудования" Command="{Binding Path=ReportHistoryMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/report.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Использование расходных материалов" Command="{Binding Path=ReportConsumableMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/report.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -89,6 +126,13 @@
                         <Setter Property="Header" Value="{Binding Path=Name}" />
                     </Style>
                 </MenuItem.ItemContainerStyle>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="Просмотр справки" Command="{Binding Path=HelpMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/help.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding CurrentTab.ViewModel}" Margin="10 2">

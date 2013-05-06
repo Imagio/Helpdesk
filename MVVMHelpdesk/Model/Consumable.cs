@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -45,5 +46,9 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Display(Name="Тип")]
         public ConsumableType ConsumableType { get; set; }
+
+        [Display(Name = "Количество")]
+        [DefaultValue(0)]
+        public Int32 Count { get; set; }
     }
 }

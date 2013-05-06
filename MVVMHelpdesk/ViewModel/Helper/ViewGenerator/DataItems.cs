@@ -33,6 +33,22 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
             : base(model, property) { }
     }
 
+    public class DateTimeDataItem : DataItem
+    {
+        public DateTimeDataItem(Object model, Expression<Func<Object, Object>> property)
+            : base(model, property) { }
+        public DateTimeDataItem(Object model, String property)
+            : base(model, property) { }
+    }
+
+    public class IntDataItem : DataItem
+    {
+        public IntDataItem(Object model, Expression<Func<Object, Object>> property)
+            : base(model, property) { }
+        public IntDataItem(Object model, String property)
+            : base(model, property) { }
+    }
+
     public class CollectionDataItem: DataItem
     {
         private HelpdeskContext _context;

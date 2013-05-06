@@ -388,6 +388,18 @@
   <ItemGroup>
     <Resource Include="Images\bullet_error.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\chart_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tag_blue.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

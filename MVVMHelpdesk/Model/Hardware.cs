@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -32,5 +34,22 @@ namespace Imagio.Helpdesk.Model
 
         [Display(Name = "Инвентарный номер")]
         public String InventoryNumber { get; set; }
+
+        [Display(Name = "Дата постановки на учет")]
+        [DefaultValue(null)]
+        public DateTime? StartDate { get; set; }
+
+        [Display(Name = "Дата списания")]
+        [DefaultValue(null)]
+        public DateTime? EndDate { get; set; }
+
+        [NotMapped]
+        public bool IsUsing
+        {
+            get
+            {
+                return EndDate == null;
+            }
+        }
     }
 }

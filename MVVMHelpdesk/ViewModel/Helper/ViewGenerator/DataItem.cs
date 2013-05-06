@@ -65,9 +65,15 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
             }
             set
             {
-                Object newValue = _setter != null ? _setter(value) : value;
-                _propertyInfo.SetValue(Model, newValue, null);
-                OnPropertyChanged(() => Value);
+                try
+                {
+                    Object newValue = _setter != null ? _setter(value) : value;
+                    _propertyInfo.SetValue(Model, newValue, null);
+                    OnPropertyChanged(() => Value);
+                }
+                catch
+                {
+                }
             }
         }
 

@@ -5,6 +5,10 @@
     <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}">
         <DataGrid.Columns>
             <DataGridTextColumn Binding="{Binding Path=Name}" Header="Наименование" />
+            <DataGridTextColumn Binding="{Binding Path=HardwareType.Name}" Header="Тип" />
+            <DataGridTextColumn Binding="{Binding Path=Maker.Name}" Header="Производитель" />
+            <DataGridTextColumn Binding="{Binding Path=Master.ShortName}" Header="Ответственный специалист" />
+            <DataGridTextColumn Binding="{Binding Path=InventoryNumber}" Header="Инвентарный номер" />
         </DataGrid.Columns>
     </DataGrid>
     

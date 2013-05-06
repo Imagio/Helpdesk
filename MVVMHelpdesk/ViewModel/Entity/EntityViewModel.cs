@@ -154,9 +154,17 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 {
                     DataItemCollection.Add(new PasswordDataItem(Model, property.Name));
                 }
-                else if (propertyType == typeof(bool))
+                else if (propertyType == typeof(bool) || propertyType == typeof(bool?))
                 {
                     DataItemCollection.Add(new BoolDataItem(Model, property.Name));
+                }
+                else if (propertyType == typeof(DateTime) || propertyType == typeof(DateTime?))
+                {
+                    DataItemCollection.Add(new DateTimeDataItem(Model, property.Name));
+                }
+                else if (propertyType == typeof(Int32) || propertyType == typeof(Int32?))
+                {
+                    DataItemCollection.Add(new IntDataItem(Model, property.Name));
                 }
                 else if (propertyType.BaseType == typeof(EntityModel))
                 {

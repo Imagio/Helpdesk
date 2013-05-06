@@ -18,12 +18,18 @@
                             <DataTemplate DataType="{x:Type dataItem:StringDataItem}">
                                 <TextBox Text="{Binding Path=Value, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type dataItem:IntDataItem}">
+                                <TextBox Text="{Binding Path=Value, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+                            </DataTemplate>
                             <DataTemplate DataType="{x:Type dataItem:PasswordDataItem}">
                                 <PasswordBox helperView:PasswordHelper.Password="{Binding Path=Value, Mode=OneWayToSource}"
                                                  helperView:PasswordHelper.Attach="True"/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type dataItem:BoolDataItem}">
                                 <CheckBox IsChecked="{Binding Path=Value, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type dataItem:DateTimeDataItem}">
+                                <DatePicker SelectedDate="{Binding Path=Value, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type dataItem:CollectionDataItem}">
                                 <ComboBox SelectedItem="{Binding Path=Value, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
