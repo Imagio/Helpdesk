@@ -1,16 +1,27 @@
 ﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.CartridgeAccountingWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="Collection" Source="{Binding Path=ItemColletion}">
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="StartDate" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+
+
+    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}"
+              ItemsSource="{Binding Source={StaticResource ResourceKey=Collection}}">
         <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding Path=StartDate}" Header="Дата рег." />
+            <DataGridTextColumn Binding="{Binding Path=StartDate, Converter={StaticResource DateConverter}}" Header="Дата рег." />
             <DataGridTextColumn Binding="{Binding Path=Cartridge.Name}" Header="Картридж" />
             <DataGridTextColumn Binding="{Binding Path=Rook}" Header="Кабинет" />
             <DataGridCheckBoxColumn Binding="{Binding Path=IsRefill}" Header="Заправка" />
             <DataGridCheckBoxColumn Binding="{Binding Path=IsPhotoreceptor}" Header="Фоторец." />
             <DataGridCheckBoxColumn Binding="{Binding Path=IsRoll}" Header="Ролик" />
-            <DataGridTextColumn Binding="{Binding Path=EndDate}" Header="Дата исп." />
+            <DataGridTextColumn Binding="{Binding Path=EndDate, Converter={StaticResource DateConverter}}" Header="Дата исп." />
         </DataGrid.Columns>
     </DataGrid>
     
