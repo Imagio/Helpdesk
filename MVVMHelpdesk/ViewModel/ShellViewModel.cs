@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Imagio.Helpdesk.Model;
-using Imagio.Helpdesk.ViewModel.Entity;
+using Imagio.Helpdesk.Model.Interfaces;
 using Imagio.Helpdesk.ViewModel.Helper;
 using Imagio.Helpdesk.ViewModel.Workspace;
 
@@ -24,21 +21,21 @@ namespace Imagio.Helpdesk.ViewModel
         public IList<MenuItem> DirectoryMenuCollection { get; private set; }
         private void _generateDirectoryMenu()
         {
-            DirectoryMenuCollection = new List<MenuItem>();
-
-            DirectoryMenuCollection.Add(new MenuItem("Производители", () => _addEntityTab<Firm>("Производители")));
-            DirectoryMenuCollection.Add(new MenuItem("Типы картриджей", () => _addEntityTab<CartridgeType>("Типы картриджей")));
-            DirectoryMenuCollection.Add(new MenuItem("Типы расходных материалов", () => _addEntityTab<ConsumableType>("Типы расходных материалов")));
-            DirectoryMenuCollection.Add(new MenuItem("Типы аппаратного обеспечения", () => _addEntityTab<HardwareType>("Типы аппаратного обеспечения")));
+            DirectoryMenuCollection = new List<MenuItem>
+                {
+                    new MenuItem("Производители", () => _addEntityTab<Firm>("Производители")),
+                    new MenuItem("Типы картриджей", () => _addEntityTab<CartridgeType>("Типы картриджей")),
+                    new MenuItem("Типы расходных материалов",
+                                 () => _addEntityTab<ConsumableType>("Типы расходных материалов")),
+                    new MenuItem("Типы аппаратного обеспечения",
+                                 () => _addEntityTab<HardwareType>("Типы аппаратного обеспечения"))
+                };
         }
 
         public void AddTab(TabViewModel tabViewModel)
         {
             TabCollection.Insert(0, tabViewModel);
-            tabViewModel.CloseTabClick += (sender) =>
-                {
-                    TabCollection.Remove(sender);
-                };
+            tabViewModel.CloseTabClick += sender => TabCollection.Remove(sender);
             CurrentTab = tabViewModel;
         }
 
@@ -137,10 +134,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _backupMenuCommand = _backupMenuCommand ?? new RelayCommand(() =>
-                    {
-                        AddTab(new Tab<BackupViewModel>(new BackupViewModel(), "Резервное копирование"));
-                    });
+                _backupMenuCommand = _backupMenuCommand ?? new RelayCommand(() => AddTab(new Tab<BackupViewModel>(new BackupViewModel(), "Резервное копирование")));
                 return _backupMenuCommand;
             }
         }
@@ -150,11 +144,16 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _serviceConsumableCommand = _serviceConsumableCommand ?? new RelayCommand(() =>
-                {
-                    _addEntityTab<ConsumableAccounting>("Учет расходных материалов");
-                });
+                _serviceConsumableCommand = _serviceConsumableCommand ?? new RelayCommand(() => _addEntityTab<ConsumableAccounting>("Учет расходных материалов"));
                 return _serviceConsumableCommand;
+            }
+        }
+
+        private ICommand _serviceCartridgeCommand;
+        public ICommand ServiceCartridgeCommand
+        {
+            get { _serviceCartridgeCommand = _serviceCartridgeCommand ?? new RelayCommand(() => _addEntityTab<CartridgeAccounting>("Учет заправок картриджей"));
+                return _serviceCartridgeCommand;
             }
         }
     }

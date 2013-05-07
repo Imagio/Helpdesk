@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -21,21 +20,21 @@ namespace Imagio.Helpdesk.Model
         /// </summary>
         [Required]
         [StringLength(20)]
-        [Display(Name="Имя пользователя")]
+        [Display(Name=@"Имя пользователя")]
         public String Login { get; set; }
 
         /// <summary>
         /// Пароль
         /// </summary>
         [Required]
-        [Display(Name="Пароль")]
+        [Display(Name=@"Пароль")]
         public Byte[] Password { get; set; }
 
         /// <summary>
         /// Активная учетная запись
         /// </summary>
         [Required]
-        [Display(Name="Активная учетная запись")]
+        [Display(Name=@"Активная учетная запись")]
         [DefaultValue(true)]
         public Boolean IsActive { get; set; }
 

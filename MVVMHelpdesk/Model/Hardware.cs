@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -20,26 +18,26 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
-        [Display(Name = "Наименование")]
+        [Display(Name = @"Наименование")]
         public String Name { get; set; }
 
-        [Display(Name = "Тип")]
+        [Display(Name = @"Тип")]
         public HardwareType HardwareType { get; set; }
 
-        [Display(Name = "Производитель")]
+        [Display(Name = @"Производитель")]
         public Firm Maker { get; set; }
 
-        [Display(Name = "Ответственный специалист")]
+        [Display(Name = @"Ответственный специалист")]
         public Employee Master { get; set; }
 
-        [Display(Name = "Инвентарный номер")]
+        [Display(Name = @"Инвентарный номер")]
         public String InventoryNumber { get; set; }
 
-        [Display(Name = "Дата постановки на учет")]
+        [Display(Name = @"Дата постановки на учет")]
         [DefaultValue(null)]
         public DateTime? StartDate { get; set; }
 
-        [Display(Name = "Дата списания")]
+        [Display(Name = @"Дата списания")]
         [DefaultValue(null)]
         public DateTime? EndDate { get; set; }
 

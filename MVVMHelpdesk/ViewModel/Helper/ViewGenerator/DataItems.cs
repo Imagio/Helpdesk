@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Imagio.Helpdesk.Model;
 
 namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
@@ -19,10 +18,10 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
     public class PasswordDataItem : DataItem
     {
         public PasswordDataItem(Object model, Expression<Func<Object, Object>> property)
-            : base(model, property, o => { return Hash.Calc(o.ToString()); }) { }
+            : base(model, property, o => Hash.Calc(o.ToString())) { }
 
         public PasswordDataItem(Object model, String property)
-            : base(model, property, o => { return Hash.Calc(o.ToString()); }) { }
+            : base(model, property, o => Hash.Calc(o.ToString())) { }
     }
 
     public class BoolDataItem : DataItem
@@ -46,26 +45,28 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
         public IntDataItem(Object model, Expression<Func<Object, Object>> property)
             : base(model, property, o =>
                 {
-                    int res = 0;
+                    int res;
                     try
                     {
                         Int32.TryParse(o.ToString(), out res);
                     }
-                    finally
+                    catch
                     {
+                        return 0;
                     }
                     return res;
                 }) { }
         public IntDataItem(Object model, String property)
             : base(model, property, o =>
             {
-                int res = 0;
+                int res;
                 try
                 {
                     Int32.TryParse(o.ToString(), out res);
                 }
-                finally
+                catch
                 {
+                    return 0;
                 }
                 return res;
             }) { }
@@ -73,8 +74,8 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
 
     public class CollectionDataItem: DataItem
     {
-        private HelpdeskContext _context;
-        private Type _type;
+        private readonly HelpdeskContext _context;
+        private readonly Type _type;
 
         public CollectionDataItem(Object model, Expression<Func<Object, Object>> property, HelpdeskContext context, Type type, string path)
             : base(model, property) 
@@ -96,7 +97,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
 
         private void _init()
         {
-            ItemsSource = EntityStore.EntityQuery(_context, _type).ToList();
+            ItemsSource = EntityStore.GetEntityQuery(_context, _type).ToList();
         }
 
         public IList<Object> ItemsSource { get; private set; }

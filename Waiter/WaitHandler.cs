@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace Waiter
@@ -10,19 +7,13 @@ namespace Waiter
     {
         private static void ExecuteSplashScreen()
         {
-            try
-            {
-                Waiter.WaitWindow splScr = new Waiter.WaitWindow();
-                splScr.ShowDialog();
-            }
-            catch
-            {
-            }
+            var splScr = new WaitWindow();
+            splScr.ShowDialog();
         }
 
         public static void Run(Action act)
         {
-            Thread threadSplashScreen = new Thread(ExecuteSplashScreen);
+            var threadSplashScreen = new Thread(ExecuteSplashScreen);
             threadSplashScreen.SetApartmentState(ApartmentState.STA);
             try
             {

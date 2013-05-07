@@ -97,6 +97,13 @@
                                         </DataTemplate>
                                     </selector:Template.DataTemplate>
                                 </selector:Template>
+                                <selector:Template Value="{x:Type model:CartridgeAccounting}">
+                                    <selector:Template.DataTemplate>
+                                        <DataTemplate>
+                                            <workspaceView:CartridgeAccountingWorkspaceView />
+                                        </DataTemplate>
+                                    </selector:Template.DataTemplate>
+                                </selector:Template>
                             </selector:TemplateCollection>
                         </Setter.Value>
                     </Setter>

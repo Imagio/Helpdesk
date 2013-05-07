@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
 {
@@ -47,9 +45,9 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
             return "";
         }
 
-        private Func<Object, Object> _setter;
+        private readonly Func<Object, Object> _setter;
 
-        private PropertyInfo _propertyInfo; 
+        private readonly PropertyInfo _propertyInfo; 
 
         protected object Model { get; private set; }
 
@@ -71,8 +69,9 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
                     _propertyInfo.SetValue(Model, newValue, null);
                     OnPropertyChanged(() => Value);
                 }
-                catch
+                catch (Exception)
                 {
+                    OnPropertyChanged(() => value);
                 }
             }
         }
@@ -84,9 +83,11 @@ namespace Imagio.Helpdesk.ViewModel.Helper.ViewGenerator
 
         public string this[string columnName]
         {
-            get 
+            get
             {
-                return (Model as IDataErrorInfo)[PropertyName];
+                var dataErrorInfo = Model as IDataErrorInfo;
+                if (dataErrorInfo != null) return dataErrorInfo[PropertyName];
+                return null;
             }
         }
     }

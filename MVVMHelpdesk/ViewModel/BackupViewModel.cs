@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using Imagio.Helpdesk.ViewModel.Helper;
 
@@ -23,7 +21,7 @@ namespace Imagio.Helpdesk.ViewModel
         { 
             get 
             {
-                DirectoryInfo di = new DirectoryInfo(_backupDirectoryPath);
+                var di = new DirectoryInfo(_backupDirectoryPath);
                 return di.FullName;
             } 
         }
@@ -31,7 +29,7 @@ namespace Imagio.Helpdesk.ViewModel
         private void _loadFileList()
         {
             FileList.Clear();
-            DirectoryInfo di = new DirectoryInfo(_backupDirectoryPath);
+            var di = new DirectoryInfo(_backupDirectoryPath);
             var files = di.GetFiles("*.sdf");
             foreach (var file in files)
             {
@@ -60,7 +58,6 @@ namespace Imagio.Helpdesk.ViewModel
                 _backupDatabaseCommand = _backupDatabaseCommand ?? new RelayCommand(() =>
                     {
                         var databasePath = Properties.Settings.Default.DatabasePath;
-                        FileInfo databaseFile = new FileInfo(databasePath);
                         var databaseFileName = Path.GetFileNameWithoutExtension(databasePath);
                         var databaseFileExt = Path.GetExtension(databasePath);
                         var now = DateTime.Now;
@@ -80,9 +77,6 @@ namespace Imagio.Helpdesk.ViewModel
             {
                 _restoreDatabaseCommand = _restoreDatabaseCommand ?? new RelayCommand(() =>
                     {
-                        if (String.IsNullOrEmpty(_selectedFile))
-                            return;
-                        var databasePath = Properties.Settings.Default.DatabasePath;
                     });
                 return _restoreDatabaseCommand;
             }

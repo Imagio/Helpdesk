@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace Imagio.Helpdesk.Converter
@@ -15,7 +12,7 @@ namespace Imagio.Helpdesk.Converter
                 var dt = (DateTime)value;
                 if (parameter == null)
                     return dt.ToShortDateString();
-                return dt.ToString();
+                return dt.ToString(culture);
             }
             return null;
         }

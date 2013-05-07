@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Imagio.Helpdesk.Events;
 using Imagio.Helpdesk.Model;
@@ -54,10 +51,12 @@ namespace Imagio.Helpdesk.ViewModel
                 _changeDatabasePathCommand = _changeDatabasePathCommand ?? new RelayCommand(
                     () =>
                         {
-                            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-                            openFileDialog.Filter = "Файл БД MS SQL Compact*.sdf|*.sdf";
-                            openFileDialog.FileName = DatabasePath;
-                            openFileDialog.Multiselect = false;
+                            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+                                {
+                                    Filter = "Файл БД MS SQL Compact*.sdf|*.sdf",
+                                    FileName = DatabasePath,
+                                    Multiselect = false
+                                };
                             if (openFileDialog.ShowDialog() == true)
                             {
                                 DatabasePath = openFileDialog.FileName;
@@ -82,10 +81,13 @@ namespace Imagio.Helpdesk.ViewModel
                             try
                             {
                                 account = context.Accounts.FirstOrDefault(w => w.Login == _login && w.IsActive);
-                                var pwd = Hash.ToString(account.Password);
-                                var pwd_check = Hash.ToString(_password);
+                                if (account != null)
+                                {
+                                    var pwd = Hash.ToString(account.Password);
+                                    var pwdCheck = Hash.ToString(_password);
 
-                                account = pwd == pwd_check ? account : null;
+                                    account = pwd == pwdCheck ? account : null;
+                                }
                             }
                             catch (NullReferenceException)
                             {
@@ -115,10 +117,7 @@ namespace Imagio.Helpdesk.ViewModel
                         using (var context = new HelpdeskContext())
                         {
                             context.Database.CreateIfNotExists();
-                            Account account = new Account();
-                            account.Login = "root";
-                            account.Password = Hash.Calc("root");
-                            account.IsActive = true;
+                            var account = new Account {Login = "root", Password = Hash.Calc("root"), IsActive = true};
                             context.Set<Account>().Add(account);
                             context.SaveChanges();
                         }

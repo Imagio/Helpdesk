@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -18,28 +16,28 @@ namespace Imagio.Helpdesk.Model
         /// Наименование
         /// </summary>
         [Required]
-        [Display(Name="Наименование")]
+        [Display(Name=@"Наименование")]
         public String Name { get; set; }
 
         /// <summary>
         /// Тип картриджа
         /// </summary>
-        [Display(Name="Тип")]
+        [Display(Name=@"Тип")]
         public CartridgeType CartridgeType { get; set; }
 
         /// <summary>
         /// Производитель
         /// </summary>
-        [Display(Name="Производитель")]
+        [Display(Name=@"Производитель")]
         public Firm Maker { get; set; }
 
         /// <summary>
         /// Ответственный специалист
         /// </summary>
-        [Display(Name="Ответственный специалист")]
+        [Display(Name=@"Ответственный специалист")]
         public Employee Master { get; set; }
 
-        [Display(Name = "Инвентарный номер")]
+        [Display(Name = @"Инвентарный номер")]
         public string InventoryNumber { get; set; }
     }
 }

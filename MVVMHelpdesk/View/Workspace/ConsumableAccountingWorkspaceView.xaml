@@ -1,31 +1,33 @@
 ﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.ConsumableAccountingWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:model="clr-namespace:Imagio.Helpdesk.Model">
     
     <UserControl.Resources>
-        <CollectionViewSource x:Key="collection" Source="{Binding Path=ItemColletion}">
+        <CollectionViewSource x:Key="Collection" Source="{Binding Path=ItemColletion}">
             <CollectionViewSource.GroupDescriptions>
                 <PropertyGroupDescription PropertyName="Consumable" />
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
     
-    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}" ItemsSource="{Binding Source={StaticResource ResourceKey=collection}}">
+    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}" ItemsSource="{Binding Source={StaticResource ResourceKey=Collection}}">
         <DataGrid.Columns>
-            <DataGridTemplateColumn>
+            <DataGridTextColumn Binding="{Binding Path=Date, Converter={StaticResource ResourceKey=DateConverter}}" Header="Дата" />
+            <DataGridTextColumn Binding="{Binding Path=Consumable.Name}" Header="Расходный материал" />
+            <DataGridTextColumn Binding="{Binding Path=Consumable.Article}" Header="Артикул" />
+            <DataGridTemplateColumn Header="Количество">
                 <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
+                    <DataTemplate DataType="model:ConsumableAccounting">
+                        <StackPanel Orientation="Horizontal">
                         <Grid>
                             <Image UseLayoutRounding="True" Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/bullet_add.png" Visibility="{Binding Path=Sign, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}}" />
                             <Image UseLayoutRounding="True" Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/bullet_delete.png" Visibility="{Binding Path=Sign, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}, ConverterParameter=1}" />
                         </Grid>
+                            <TextBlock Text="{Binding Path=Count}" />
+                        </StackPanel>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTextColumn Binding="{Binding Path=Date, Converter={StaticResource ResourceKey=DateConverter}}" Header="Дата" />
-            <DataGridTextColumn Binding="{Binding Path=Consumable.Name}" Header="Расходный материал" />
-            <DataGridTextColumn Binding="{Binding Path=Consumable.Article}" Header="Артикул" />
-            <DataGridTextColumn Binding="{Binding Path=Count}" Header="Количество" />
         </DataGrid.Columns>
         <DataGrid.GroupStyle>
             <!-- Style for groups at top level. -->

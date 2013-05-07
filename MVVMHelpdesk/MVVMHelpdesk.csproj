@@ -97,6 +97,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter\ConsumableConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
+    <Compile Include="Model\CartridgeAccounting.cs" />
     <Compile Include="Model\ConsumableAccounting.cs" />
     <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
     <Compile Include="ViewModel\Service\ConsumableAccountingWorkspace.cs" />
@@ -122,16 +123,7 @@
     <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="TemplateSelector\GenericTemplateSelector.cs" />
     <Compile Include="ViewModel\BackupViewModel.cs" />
-    <Compile Include="ViewModel\Entity\AccountViewModel.cs" />
-    <Compile Include="ViewModel\Entity\CartridgeTypeViewModel.cs" />
-    <Compile Include="ViewModel\Entity\CartridgeViewModel.cs" />
-    <Compile Include="ViewModel\Entity\ConsumableTypeViewModel.cs" />
-    <Compile Include="ViewModel\Entity\ConsumableViewModel.cs" />
-    <Compile Include="ViewModel\Entity\EmployeeViewModel.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
-    <Compile Include="ViewModel\Entity\FirmViewModel.cs" />
-    <Compile Include="ViewModel\Entity\HardwareTypeViewModel.cs" />
-    <Compile Include="ViewModel\Entity\SoftwareViewModel.cs" />
     <Compile Include="ViewModel\Helper\EntityStore.cs" />
     <Compile Include="ViewModel\Helper\Hash.cs" />
     <Compile Include="ViewModel\Helper\RelayCommand.cs" />
@@ -155,6 +147,9 @@
     </Compile>
     <Compile Include="View\Workspace\AccountWorkspaceView.xaml.cs">
       <DependentUpon>AccountWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Workspace\CartridgeAccountingWorkspaceView.xaml.cs">
+      <DependentUpon>CartridgeAccountingWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Workspace\CartridgeWorkspaceView.xaml.cs">
       <DependentUpon>CartridgeWorkspaceView.xaml</DependentUpon>
@@ -251,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Workspace\AccountWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Workspace\CartridgeAccountingWorkspaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

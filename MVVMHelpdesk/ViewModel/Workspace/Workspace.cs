@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Data.Entity.Validation;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Windows.Input;
 using Imagio.Helpdesk.Model;
+using Imagio.Helpdesk.Model.Interfaces;
 using Imagio.Helpdesk.View;
 using Imagio.Helpdesk.ViewModel.Helper;
 
@@ -30,7 +26,7 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
             ItemColletion.Clear();
             using (var context = new HelpdeskContext())
             {
-                var dbSet = EntityStore.EntityQuery<TE>(context);
+                var dbSet = EntityStore.GetEntityQuery<TE>(context);
                 if (dbSet != null)
                 {
                     foreach (var item in dbSet)
@@ -67,20 +63,20 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
             using (var context = new HelpdeskContext())
             {
                 var dbSet = context.Set<TE>();
-                var item = dbSet.Create() as TE;
+                var item = dbSet.Create();
                 item.Id = Guid.NewGuid();
                 dbSet.Add(item);
                 var window = new DialogView();
-                var viewModel = EntityStore.ViewModel<TE>(item, context);
+                var viewModel = EntityStore.ViewModel(item, context);
 
-                viewModel.OnCancel += (sender) =>
+                viewModel.OnCancel += sender =>
                     {
                         if (window.IsVisible)
                             window.DialogResult = false;
                         _refreshCollection();
                     };
 
-                viewModel.OnSave += (sender) =>
+                viewModel.OnSave += sender =>
                     {
                         if (window.IsVisible)
                             window.DialogResult = false;
@@ -108,26 +104,26 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
                 return;
             using (var context = new HelpdeskContext())
             {
-                var query = EntityStore.EntityQuery<TE>(context);
-                var item = query.Where(w => w.Id == _selectedItem.Id).Single();
+                var query = EntityStore.GetEntityQuery<TE>(context);
+                var item = query.Single(w => w.Id == _selectedItem.Id);
 
                 var window = new DialogView();
-                var viewModel = EntityStore.ViewModel<TE>(item, context);
+                var viewModel = EntityStore.ViewModel(item, context);
 
-                viewModel.OnCancel += (sender) =>
+                viewModel.OnCancel += sender =>
                 {
                     if (window.IsVisible)
                         window.DialogResult = false;
                     _refreshCollection();
                 };
 
-                viewModel.OnSave += (sender) =>
-                {
-                    if (window.IsVisible)
-                        window.DialogResult = false;
-                    context.SaveChanges();
-                    _refreshCollection();
-                };
+                viewModel.OnSave += sender =>
+                    {
+                        if (window.IsVisible)
+                            window.DialogResult = false;
+                        context.SaveChanges();
+                        _refreshCollection();
+                    };
                 window.DataContext = viewModel;
                 window.ShowDialog();
             }
@@ -148,7 +144,7 @@ namespace Imagio.Helpdesk.ViewModel.Workspace
                 return;
             using (var context = new HelpdeskContext())
             {
-                var item = context.Set<TE>().Where(w => w.Id == _selectedItem.Id).Single();
+                var item = context.Set<TE>().Single(w => w.Id == _selectedItem.Id);
                 context.Set<TE>().Remove(item);
                 context.SaveChanges();
                 _refreshCollection();

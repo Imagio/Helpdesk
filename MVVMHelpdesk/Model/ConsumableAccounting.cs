@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -18,7 +16,7 @@ namespace Imagio.Helpdesk.Model
         /// <summary>
         /// Дата
         /// </summary>
-        [Display(Name = "Дата")]
+        [Display(Name = @"Дата")]
         [Required]
         [DefaultValue(null)]
         public DateTime? Date { get; set; }
@@ -26,20 +24,20 @@ namespace Imagio.Helpdesk.Model
         /// <summary>
         /// Расходный материал
         /// </summary>
-        [Display(Name = "Расходный материал")]
+        [Display(Name = @"Расходный материал")]
         [Required]
         public Consumable Consumable { get; set; }
 
         /// <summary>
         /// Ответственный специалист
         /// </summary>
-        [Display(Name = "Ответственный специалист")]
+        [Display(Name = @"Ответственный специалист")]
         public Employee Employee { get; set; }
 
         /// <summary>
         /// Количество
         /// </summary>
-        [Display(Name = "Количество")]
+        [Display(Name = @"Количество")]
         public Int32 Count { get; set; }
 
         /// <summary>
@@ -47,7 +45,7 @@ namespace Imagio.Helpdesk.Model
         /// TRUE - приход на склад
         /// FALSE - расход
         /// </summary>
-        [Display(Name = "Приход/Расход")]
+        [Display(Name = @"Приход/Расход")]
         public bool Sign { get; set; }
     }
 }

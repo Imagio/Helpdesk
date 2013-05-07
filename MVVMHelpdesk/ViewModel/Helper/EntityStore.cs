@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
 using Imagio.Helpdesk.Model;
+using Imagio.Helpdesk.Model.Interfaces;
 using Imagio.Helpdesk.ViewModel.Entity;
 
 namespace Imagio.Helpdesk.ViewModel.Helper
@@ -47,7 +46,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
 
         private delegate IQueryable QueryDelegate(HelpdeskContext context);
 
-        private static Dictionary<Type, QueryDelegate> _entityQuery = new Dictionary<Type,QueryDelegate>
+        private static readonly Dictionary<Type, QueryDelegate> EntityQuery = new Dictionary<Type,QueryDelegate>
         {
             { typeof(Account), o => o.Set<Account>() },
             { typeof(Cartridge), o => o.Set<Cartridge>().Include(i => i.Maker).Include(i => i.Master).Include(i => i.CartridgeType) },
@@ -59,23 +58,24 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             { typeof(Hardware), o => o.Set<Hardware>().Include(i => i.Maker).Include(i => i.Master) },
             { typeof(HardwareType), o => o.Set<HardwareType>() },
             { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) },
-            { typeof(ConsumableAccounting), o => o.Set<ConsumableAccounting>().Include(i => i.Consumable).Include(i => i.Employee)}
+            { typeof(ConsumableAccounting), o => o.Set<ConsumableAccounting>().Include(i => i.Consumable).Include(i => i.Employee)},
+            { typeof(CartridgeAccounting), o => o.Set<CartridgeAccounting>().Include(i => i.Cartridge)}
         };
 
-        public static IQueryable<Object> EntityQuery(HelpdeskContext context, Type type)
+        public static IQueryable<Object> GetEntityQuery(HelpdeskContext context, Type type)
         {
-            if (_entityQuery.ContainsKey(type))
+            if (EntityQuery.ContainsKey(type))
             {
-                return _entityQuery[type].Invoke(context) as IQueryable<Object>;
+                return EntityQuery[type].Invoke(context) as IQueryable<Object>;
             }
             return context.Set(type) as IQueryable<Object>;
         }
 
-        public static IQueryable<TE> EntityQuery<TE>(HelpdeskContext context) where TE: class, IEntity
+        public static IQueryable<TE> GetEntityQuery<TE>(HelpdeskContext context) where TE: class, IEntity
         {
-            if (_entityQuery.ContainsKey(typeof(TE)))
+            if (EntityQuery.ContainsKey(typeof(TE)))
             {
-                return _entityQuery[typeof(TE)].Invoke(context) as IQueryable<TE>;
+                return EntityQuery[typeof(TE)].Invoke(context) as IQueryable<TE>;
             }
             return context.Set<TE>();
         }

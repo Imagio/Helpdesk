@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Imagio.Helpdesk.View.Workspace.CartridgeAccountingWorkspaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <DataGrid Style="{StaticResource ResourceKey=EntityWorkspaceGrid}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Path=StartDate}" Header="Дата рег." />
+            <DataGridTextColumn Binding="{Binding Path=Cartridge.Name}" Header="Картридж" />
+            <DataGridTextColumn Binding="{Binding Path=Rook}" Header="Кабинет" />
+            <DataGridCheckBoxColumn Binding="{Binding Path=IsRefill}" Header="Заправка" />
+            <DataGridCheckBoxColumn Binding="{Binding Path=IsPhotoreceptor}" Header="Фоторец." />
+            <DataGridCheckBoxColumn Binding="{Binding Path=IsRoll}" Header="Ролик" />
+            <DataGridTextColumn Binding="{Binding Path=EndDate}" Header="Дата исп." />
+        </DataGrid.Columns>
+    </DataGrid>
+    
+</UserControl>

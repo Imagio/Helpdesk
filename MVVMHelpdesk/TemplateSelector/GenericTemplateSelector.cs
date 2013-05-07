@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,7 +26,7 @@ namespace Imagio.Helpdesk.TemplateSelector
             element.SetValue(TemplatesProperty, collection);
         }
 
-        public override System.Windows.DataTemplate SelectTemplate(object item, System.Windows.DependencyObject container)
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (!(container is UIElement))
                 return base.SelectTemplate(item, container);
@@ -41,9 +39,10 @@ namespace Imagio.Helpdesk.TemplateSelector
             {
                 Type[] typeParams = item.GetType().GetGenericArguments();
                 Type workspaceParam = typeParams[0];
-                foreach (var template in templates)
-                    if (template.Value == workspaceParam)
-                        return template.DataTemplate;
+                if (templates != null)
+                    foreach (var template in templates)
+                        if (template.Value == workspaceParam)
+                            return template.DataTemplate;
             }
 
 
@@ -53,10 +52,6 @@ namespace Imagio.Helpdesk.TemplateSelector
 
     public class TemplateCollection : List<Template>
     {
-        static TemplateCollection()
-        {
-
-        }
     }
 
     public class Template : DependencyObject

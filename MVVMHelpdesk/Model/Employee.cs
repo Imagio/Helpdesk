@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -19,7 +17,7 @@ namespace Imagio.Helpdesk.Model
         /// Фамилия
         /// </summary>
         [Required]
-        [Display(Name = "Фамилия")]
+        [Display(Name = @"Фамилия")]
         [MinLength(1)]
         public String LastName { get; set; }
 
@@ -27,7 +25,7 @@ namespace Imagio.Helpdesk.Model
         /// Имя
         /// </summary>
         [Required]
-        [Display(Name="Имя")]
+        [Display(Name=@"Имя")]
         [MinLength(1)]
         public String FirstName { get; set; }
 
@@ -35,7 +33,7 @@ namespace Imagio.Helpdesk.Model
         /// Отчество
         /// </summary>
         [Required]
-        [Display(Name="Отчество")]
+        [Display(Name=@"Отчество")]
         [MinLength(1)]
         public String SecondName { get; set; }
 

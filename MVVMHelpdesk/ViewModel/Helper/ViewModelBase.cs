@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Imagio.Helpdesk.ViewModel.Helper
 {
@@ -20,8 +16,12 @@ namespace Imagio.Helpdesk.ViewModel.Helper
 
         public void OnPropertyChanged<T>(Expression<Func<T>> property)
         {
-            var propertyName = (property.Body as MemberExpression).Member.Name;
-            RaisePropertyChanged(propertyName);
+            var memberExpression = property.Body as MemberExpression;
+            if (memberExpression != null)
+            {
+                var propertyName = memberExpression.Member.Name;
+                RaisePropertyChanged(propertyName);
+            }
         }
 
         public void OnPropertyChanged<T>(Expression<Func<T>> property, ref T result, T newValue)
@@ -29,8 +29,12 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             if (!Equals(result, newValue))
             {
                 result = newValue;
-                var propertyName = (property.Body as MemberExpression).Member.Name;
-                RaisePropertyChanged(propertyName);
+                var memberExpression = property.Body as MemberExpression;
+                if (memberExpression != null)
+                {
+                    var propertyName = memberExpression.Member.Name;
+                    RaisePropertyChanged(propertyName);
+                }
             }
         }
     }

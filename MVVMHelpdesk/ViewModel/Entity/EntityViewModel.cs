@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using Imagio.Helpdesk.Model;
 using System.Reflection;
 using System.Windows.Input;
 using Imagio.Helpdesk.ViewModel.Helper;
-using System.Data.Entity.Validation;
 using System.Collections.ObjectModel;
 using Imagio.Helpdesk.ViewModel.Helper.ViewGenerator;
 
@@ -26,7 +24,7 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         public delegate void CancelEventHandler(object sender);
         public event CancelEventHandler OnCancel;
 
-        protected HelpdeskContext Context;
+        private readonly HelpdeskContext _context;
 
         public EntityViewModel(TE model, HelpdeskContext context)
         {
@@ -36,7 +34,7 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 throw new ArgumentNullException("context");
 
             Model = model;
-            Context = context;
+            _context = context;
 
             DataItemCollection = new ObservableCollection<DataItem>();
             AddDataItems();
@@ -46,7 +44,7 @@ namespace Imagio.Helpdesk.ViewModel.Entity
 
         #region IDataErrorInfo
 
-        private Dictionary<string, string> _errorList = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _errorList = new Dictionary<string, string>();
 
         public string Error
         {
@@ -57,10 +55,7 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 var sb = new StringBuilder();
                 foreach (var item in _errorList)
                 {
-                    if (sb.Length == 0)
-                        sb.AppendFormat("{0}", item.Value);
-                    else
-                        sb.AppendFormat("\n{0}", item.Value);
+                    sb.AppendFormat(sb.Length == 0 ? "{0}" : "\n{0}", item.Value);
                 }
                 return sb.ToString();
             }
@@ -107,8 +102,8 @@ namespace Imagio.Helpdesk.ViewModel.Entity
             {
                 _saveCommand = _saveCommand ?? new RelayCommand(() =>
                 {
-                    var allErrors = Context.GetValidationErrors();
-                    var errors = allErrors.Where(o => o.Entry.Entity == Model).FirstOrDefault();
+                    var allErrors = _context.GetValidationErrors();
+                    var errors = allErrors.FirstOrDefault(o => o.Entry.Entity == Model);
                     if (errors != null)
                     {
                         foreach (var item in errors.ValidationErrors)
@@ -140,7 +135,8 @@ namespace Imagio.Helpdesk.ViewModel.Entity
         }
 
         public ObservableCollection<DataItem> DataItemCollection { get; private set; }
-        protected virtual void AddDataItems()
+
+        private void AddDataItems()
         {
             var propertyList = Model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty).Where(w => w.GetSetMethod() != null).ToList();
             foreach (var property in propertyList)
@@ -168,12 +164,8 @@ namespace Imagio.Helpdesk.ViewModel.Entity
                 }
                 else if (propertyType.BaseType == typeof(EntityModel))
                 {
-                    var path = "";
-                    if (propertyType == typeof(Employee))
-                        path = "ShortName";
-                    else
-                        path = "Name";
-                    DataItemCollection.Add(new CollectionDataItem(Model, property.Name, Context, propertyType, path));
+                    string path = propertyType == typeof(Employee) ? "ShortName" : "Name";
+                    DataItemCollection.Add(new CollectionDataItem(Model, property.Name, _context, propertyType, path));
                 }
             }
         }

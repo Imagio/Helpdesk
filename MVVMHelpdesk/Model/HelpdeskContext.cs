@@ -1,5 +1,6 @@
 ﻿using System.Data.Common;
 using System.Data.Entity;
+using Imagio.Helpdesk.Model.Interfaces;
 
 namespace Imagio.Helpdesk.Model
 {
@@ -71,5 +72,7 @@ namespace Imagio.Helpdesk.Model
         /// Учет расходников
         /// </summary>
         public DbSet<ConsumableAccounting> ConsumableAccountings { get; set; }
+
+        public DbSet<CartridgeAccounting> CartridgeAccountings { get; set; }
     }
 }

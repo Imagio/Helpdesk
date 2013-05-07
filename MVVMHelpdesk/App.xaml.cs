@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Common;
 using System.Windows;
 using Imagio.Helpdesk.Model;
 using Imagio.Helpdesk.View;
@@ -15,7 +9,7 @@ namespace Imagio.Helpdesk
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         private SignView _signView;
         private ShellView _shellView;
@@ -31,21 +25,20 @@ namespace Imagio.Helpdesk
 
             base.OnStartup(e);
 
-            this.ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown;
+            ShutdownMode = System.Windows.ShutdownMode.OnExplicitShutdown;
 
             var signViewModel = new SignViewModel();
             signViewModel.Signed += signViewModel_Signed;
             signViewModel.OnShutdown += signViewModel_OnShutdown;
 
-            _signView = new SignView();
-            _signView.DataContext = signViewModel;
+            _signView = new SignView {DataContext = signViewModel};
             _signView.Show();
         }
 
         void signViewModel_OnShutdown(object sender)
         {
             if (Account == null)
-                this.Shutdown();
+                Shutdown();
         }
 
         void signViewModel_Signed(object sender, Events.SignedEventArgs e)
@@ -67,8 +60,7 @@ namespace Imagio.Helpdesk
                 var shellViewModel = new ShellViewModel();
                 shellViewModel.OnShutdown += OnShutdown;
 
-                _shellView = new ShellView();
-                _shellView.DataContext = shellViewModel;
+                _shellView = new ShellView {DataContext = shellViewModel};
                 _shellView.Show();
             }
         }
