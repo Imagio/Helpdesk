@@ -38,22 +38,22 @@
 
         <Menu Style="{DynamicResource TopMenu}" Margin="2 2 2 0">
             <MenuItem Header="Оборудование">
-                <MenuItem Header="Программное обеспечение" IsCheckable="True" Command="{Binding SoftwareMenuCommand}">
+                <MenuItem Header="Список программного обеспечения" IsCheckable="True" Command="{Binding SoftwareMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/software.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Аппаратное обеспечение" IsCheckable="True" Command="{Binding HardwareMenuCommand}">
+                <MenuItem Header="Список аппаратного обеспечения" IsCheckable="True" Command="{Binding HardwareMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/hardware.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Расходные материалы" IsCheckable="True" Command="{Binding ConsumableMenuCommand}">
+                <MenuItem Header="Список расходных материалов" IsCheckable="True" Command="{Binding ConsumableMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Картриджи" IsCheckable="True" Command="{Binding CartridgeMenuCommand}" >
+                <MenuItem Header="Список картриджей" IsCheckable="True" Command="{Binding CartridgeMenuCommand}" >
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/item.png" />
                     </MenuItem.Icon>
@@ -97,12 +97,12 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Администрирование">
-                <MenuItem Header="Сотрудники" Command="{Binding EmployeeMenuCommand}">
+                <MenuItem Header="Список сотрудников" Command="{Binding EmployeeMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Учетные записи" Command="{Binding AccountMenuCommand}">
+                <MenuItem Header="Список учетных записей" Command="{Binding AccountMenuCommand}">
                     <MenuItem.Icon>
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/user.png" />
                     </MenuItem.Icon>

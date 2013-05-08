@@ -23,12 +23,12 @@ namespace Imagio.Helpdesk.ViewModel
         {
             DirectoryMenuCollection = new List<MenuItem>
                 {
-                    new MenuItem("Производители", () => _addEntityTab<Firm>("Производители")),
-                    new MenuItem("Типы картриджей", () => _addEntityTab<CartridgeType>("Типы картриджей")),
-                    new MenuItem("Типы расходных материалов",
-                                 () => _addEntityTab<ConsumableType>("Типы расходных материалов")),
-                    new MenuItem("Типы аппаратного обеспечения",
-                                 () => _addEntityTab<HardwareType>("Типы аппаратного обеспечения"))
+                    new MenuItem("Список производителей", () => _addEntityTab<Firm>("Список производителей")),
+                    new MenuItem("Список типов картриджей", () => _addEntityTab<CartridgeType>("Список типов картриджей")),
+                    new MenuItem("Список типов расходных материалов",
+                                 () => _addEntityTab<ConsumableType>("Список типов расходных материалов")),
+                    new MenuItem("Список типов аппаратного обеспечения",
+                                 () => _addEntityTab<HardwareType>("Список типов аппаратного обеспечения"))
                 };
         }
 
@@ -74,7 +74,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Software>("Прогрммное обеспечение"));
+                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Software>("Список прогрммного обеспечения"));
                 return _softwareMenuCommand;
             }
         }
@@ -84,7 +84,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _hardwareMenuCommand = _hardwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Hardware>("Аппаратное обеспечение"));
+                _hardwareMenuCommand = _hardwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Hardware>("Список аппаратного обеспечения"));
                 return _hardwareMenuCommand;
             }
         }
@@ -94,7 +94,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _consumableMenuCommand = _consumableMenuCommand ?? new RelayCommand(() => _addEntityTab<Consumable>("Расходные материалы"));
+                _consumableMenuCommand = _consumableMenuCommand ?? new RelayCommand(() => _addEntityTab<Consumable>("Список расходных материалов"));
                 return _consumableMenuCommand;
             }
         }
@@ -104,7 +104,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _cartridgeMenuCommand = _cartridgeMenuCommand ?? new RelayCommand(() => _addEntityTab<Cartridge>("Картриджи"));
+                _cartridgeMenuCommand = _cartridgeMenuCommand ?? new RelayCommand(() => _addEntityTab<Cartridge>("Список картриджей"));
                 return _cartridgeMenuCommand;
             }
         }
@@ -114,7 +114,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _accountMenuCommand = _accountMenuCommand ?? new RelayCommand(() => _addEntityTab<Account>("Учетные записи"));
+                _accountMenuCommand = _accountMenuCommand ?? new RelayCommand(() => _addEntityTab<Account>("Список учетных записей"));
                 return _accountMenuCommand;
             }
         }
@@ -124,7 +124,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _employeeMenuCommand = _employeeMenuCommand ?? new RelayCommand(() => _addEntityTab<Employee>("Сотрудники"));
+                _employeeMenuCommand = _employeeMenuCommand ?? new RelayCommand(() => _addEntityTab<Employee>("Список сотрудников"));
                 return _employeeMenuCommand;
             }
         }

@@ -100,7 +100,6 @@
     <Compile Include="Model\CartridgeAccounting.cs" />
     <Compile Include="Model\ConsumableAccounting.cs" />
     <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
-    <Compile Include="ViewModel\Service\ConsumableAccountingWorkspace.cs" />
     <Compile Include="View\Entity\EntityView.xaml.cs">
       <DependentUpon>EntityView.xaml</DependentUpon>
     </Compile>
