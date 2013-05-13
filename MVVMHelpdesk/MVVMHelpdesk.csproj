@@ -97,8 +97,6 @@
     </ApplicationDefinition>
     <Compile Include="Converter\ConsumableConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
-    <Compile Include="Model\CartridgeAccounting.cs" />
-    <Compile Include="Model\ConsumableAccounting.cs" />
     <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
     <Compile Include="View\Entity\EntityView.xaml.cs">
       <DependentUpon>EntityView.xaml</DependentUpon>
@@ -106,20 +104,10 @@
     <Compile Include="View\Helper\PasswordHelper.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Events\SignedEventArgs.cs" />
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Cartridge.cs" />
-    <Compile Include="Model\CartridgeType.cs" />
-    <Compile Include="Model\Consumable.cs" />
-    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\EntityModel.cs" />
-    <Compile Include="Model\Firm.cs" />
-    <Compile Include="Model\Hardware.cs" />
-    <Compile Include="Model\HardwareType.cs" />
     <Compile Include="Model\HelpdeskContext.cs" />
     <Compile Include="Model\Interfaces\IEntity.cs" />
     <Compile Include="Model\Interfaces\IHelpdeskContext.cs" />
-    <Compile Include="Model\Software.cs" />
-    <Compile Include="Model\ConsumableType.cs" />
     <Compile Include="TemplateSelector\GenericTemplateSelector.cs" />
     <Compile Include="ViewModel\BackupViewModel.cs" />
     <Compile Include="ViewModel\Entity\EntityViewModel.cs" />
