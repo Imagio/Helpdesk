@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Imagio.Helpdesk.View.MathView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:Imagio.Helpdesk.ViewModel"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModel:MathViewModel}">
+    <ScrollViewer>
+    <Grid>
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label Content="Интервал дат"></Label>
+            <DatePicker SelectedDate="{Binding Path=DateBegin}" />
+            <Label Content=" - "></Label>
+            <DatePicker SelectedDate="{Binding Path=DateEnd}" />
+            <Button Content="Расчет регрессии" Margin="10 0 0 0" Command="{Binding SolveCommand}" CommandParameter="{Binding ElementName=cnvs}"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Среднее значение = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding MiddleY}"></Label>
+            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Уравнение регрессии = "></Label>
+                    <Label Foreground="Green" FontWeight="Bold" Content="{Binding Regression}"></Label>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                <Label Content="Индекс корреляции = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding CorIndex}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Индекс детерминации = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding DetIndex}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Средняя ошибка аппроксимации = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding MiddleA}"></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="%"></Label>
+            </StackPanel>
+            <Label Content="Критерий Фишера:"></Label>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Табличный = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding FisherTable}"></Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Экспериментальный = "></Label>
+                <Label Foreground="Green" FontWeight="Bold" Content="{Binding FisherCalc}"></Label>
+            </StackPanel>
+            <Label Visibility="{Binding IsAdective, Converter={StaticResource BoolToVisibilityConverter}}" 
+                   Content="Экспериментальное значение критерия Фишера меньше табличного => Модель является адекватной!"></Label>
+            <Label Visibility="{Binding IsAdective, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=1}" 
+                   Content="Экспериментальное значение критерия Фишера больше табличного => Модель не является адекватной!"></Label>
+        </StackPanel>
+        <Border Grid.Row="2" Width="500" Height="300" Margin="0 0 0 50" >
+            <Canvas x:Name="cnvs" Width="500" Height="300">
+                <Canvas.Background>
+                        <DrawingBrush ViewportUnits="Absolute" Viewport="0,0,50,50" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Geometry="M0 50 L50 50 L50 49 L0 49 Z" Brush="#e0e0e0" />
+                                    <GeometryDrawing Geometry="M50 0 L50 50 L49 50 L49 0 Z" Brush="#e0e0e0" />
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Canvas.Background>
+            </Canvas>
+        </Border>
+    </Grid>
+    </ScrollViewer>
+</UserControl>

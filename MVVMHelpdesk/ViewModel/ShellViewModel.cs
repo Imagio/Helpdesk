@@ -156,5 +156,14 @@ namespace Imagio.Helpdesk.ViewModel
                 return _serviceCartridgeCommand;
             }
         }
+
+        private ICommand _mathMenuCommand;
+        public ICommand MathMenuCommand
+        {
+            get { 
+                _mathMenuCommand = _mathMenuCommand ?? new RelayCommand(() => AddTab(new Tab<MathViewModel>(new MathViewModel(), "Прогнозирование заправок картриджей")));
+                return _mathMenuCommand;
+            }
+        }
     }
 }

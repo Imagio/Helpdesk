@@ -100,6 +100,7 @@
     <Compile Include="Model\CartridgeAccounting.cs" />
     <Compile Include="Model\ConsumableAccounting.cs" />
     <Compile Include="ViewModel\Helper\ViewGenerator\DataItems.cs" />
+    <Compile Include="ViewModel\MathViewModel.cs" />
     <Compile Include="View\Entity\EntityView.xaml.cs">
       <DependentUpon>EntityView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="View\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MathView.xaml.cs">
+      <DependentUpon>MathView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
@@ -223,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Entity\EntityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MathView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,7 +5,8 @@
         xmlns:workspaceViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Workspace" 
         xmlns:workspaceView="clr-namespace:Imagio.Helpdesk.View.Workspace"
         xmlns:backupView="clr-namespace:Imagio.Helpdesk.View.Backup"
-        xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper"
+        xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper" 
+        xmlns:view="clr-namespace:Imagio.Helpdesk.View"
         x:Class="Imagio.Helpdesk.View.ShellView" 
         WindowState="Maximized" Background="#D6DBE9" Icon="/MVVMHelpdesk;component/Images/application.png">
 
@@ -72,7 +73,7 @@
             </MenuItem>
 
            <Separator />
-                <MenuItem Header="Прогнозирование заправок картриджей" Command="{Binding Path=ServiceMathCommand}">
+                <MenuItem Header="Прогнозирование заправок картриджей" Command="{Binding Path=MathMenuCommand}">
                 <MenuItem.Icon>
                     <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/chart_line.png" />
                 </MenuItem.Icon>
@@ -162,6 +163,9 @@
                                         <ResourceDictionary>
                                             <DataTemplate DataType="{x:Type viewModel:BackupViewModel}">
                                                 <backupView:BackupView />
+                                            </DataTemplate>
+                                            <DataTemplate DataType="{x:Type viewModel:MathViewModel}">
+                                                <view:MathView />
                                             </DataTemplate>
                                         </ResourceDictionary>
                                     </ResourceDictionary.MergedDictionaries>

@@ -5,7 +5,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
 {
     public class RelayCommand: ICommand
     {
-        readonly Action _execute;
+        readonly Action<object> _execute;
         readonly Func<bool> _canExecute;
 
         /// <summary>
@@ -14,6 +14,12 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         /// <param name="execute">The execution logic.</param>
         /// <exception cref="System.ArgumentNullException">If the execute argument is null.</exception>
         public RelayCommand(Action execute)
+            : this(o => { execute(); })
+        {
+
+        }
+
+        public RelayCommand(Action<object> execute)
             : this(execute, () => true)
         {
         }
@@ -24,7 +30,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>
         /// <exception cref="System.ArgumentNullException">If the execute or canExecute argument is null.</exception>
-        public RelayCommand(Action execute, Func<bool> canExecute)
+        public RelayCommand(Action<object> execute, Func<bool> canExecute)
         {
             if (execute == null) throw new ArgumentNullException("execute");
             if (canExecute == null) throw new ArgumentNullException("canExecute");
@@ -55,7 +61,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
         public void Execute(object parameter)
         {
             if (CanExecute(null))
-                _execute();
+                _execute(parameter);
         }
 
         /// <summary>
