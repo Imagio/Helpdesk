@@ -10,7 +10,7 @@ namespace Imagio.Helpdesk.ViewModel
 {
     public class MathViewModel: ViewModelBase
     {
-        private DateTime _dateBegin = new DateTime(2010,1,1);
+        private DateTime _dateBegin = new DateTime(2011,1,1);
         public DateTime DateBegin
         {
             get { return _dateBegin; }
@@ -21,7 +21,7 @@ namespace Imagio.Helpdesk.ViewModel
             }
         }
 
-        private DateTime _dateEnd = new DateTime(2010, 12, 31);
+        private DateTime _dateEnd = new DateTime(2011, 12, 31);
         public DateTime DateEnd
         {
             get { return _dateEnd; }
