@@ -165,5 +165,45 @@ namespace Imagio.Helpdesk.ViewModel
                 return _mathMenuCommand;
             }
         }
+
+        private ICommand _helpMenuCommand;
+        public ICommand HelpMenuCommand
+        {
+            get
+            {
+                _helpMenuCommand = _helpMenuCommand ?? new RelayCommand(() =>
+                {
+                    var about = new Imagio.Helpdesk.View.AboutView();
+                    about.ShowDialog();
+                });
+                return _helpMenuCommand;
+            }
+        }
+
+        private ICommand _reportConsumableMenuCommand;
+        public ICommand ReportConsumableMenuCommand
+        {
+            get
+            {
+                _reportConsumableMenuCommand = _reportConsumableMenuCommand ?? new RelayCommand(() =>
+                {
+                    Report.ReportConsumable(new HelpdeskContext());
+                });
+                return _reportConsumableMenuCommand;
+            }
+        }
+
+        private ICommand _reportHistoryMenuCommand;
+        public ICommand ReportHistoryMenuCommand
+        {
+            get
+            {
+                _reportHistoryMenuCommand = _reportHistoryMenuCommand ?? new RelayCommand(() =>
+                {
+                    Report.ReportHistory(new HelpdeskContext());
+                });
+                return _reportHistoryMenuCommand;
+            }
+        }
     }
 }

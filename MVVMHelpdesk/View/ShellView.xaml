@@ -8,6 +8,7 @@
         xmlns:helperViewModel="clr-namespace:Imagio.Helpdesk.ViewModel.Helper" 
         xmlns:view="clr-namespace:Imagio.Helpdesk.View"
         x:Class="Imagio.Helpdesk.View.ShellView" 
+        Title="АВТОМАТИЗИРОВАННОЕ ПЛАНИРОВАНИЕ РАСХОДНЫХ МАТЕРИАЛОВ ДЛЯ ОРГТЕХНИКИ"
         WindowState="Maximized" Background="#D6DBE9" Icon="/MVVMHelpdesk;component/Images/application.png">
 
     <Window.Resources>

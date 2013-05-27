@@ -55,7 +55,7 @@ namespace Imagio.Helpdesk.ViewModel.Helper
             { typeof(ConsumableType), o => o.Set<ConsumableType>() },
             { typeof(Employee), o => o.Set<Employee>() },
             { typeof(Firm), o => o.Set<Firm>() },
-            { typeof(Hardware), o => o.Set<Hardware>().Include(i => i.Maker).Include(i => i.Master) },
+            { typeof(Hardware), o => o.Set<Hardware>().Include(i => i.Maker).Include(i => i.Master).Include(i => i.HardwareType) },
             { typeof(HardwareType), o => o.Set<HardwareType>() },
             { typeof(Software), o => o.Set<Software>().Include(i => i.Maker).Include(i => i.Master) },
             { typeof(ConsumableAccounting), o => o.Set<ConsumableAccounting>().Include(i => i.Consumable).Include(i => i.Employee)},

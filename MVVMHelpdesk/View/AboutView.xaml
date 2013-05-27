@@ -1,0 +1,14 @@
+﻿<Window x:Class="Imagio.Helpdesk.View.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="О программе" SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="АВТОМАТИЗИРОВАННОЕ ПЛАНИРОВАНИЕ РАСХОДНЫХ МАТЕРИАЛОВ ДЛЯ ОРГТЕХНИКИ" />
+        <Image Height="216" Width="300" Grid.Row="1" Source="/MVVMHelpdesk;component/Images/29593481_58684916.jpg"  />
+    </Grid>
+</Window>

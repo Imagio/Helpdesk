@@ -7,6 +7,7 @@
             <DataGridTextColumn Binding="{Binding Path=Name}" Header="Наименование" />
             <DataGridTextColumn Binding="{Binding Path=Maker.Name}" Header="Производитель" />
             <DataGridTextColumn Binding="{Binding Path=Master.ShortName}" Header="Ответственный специалист" />
+            <DataGridTextColumn Binding="{Binding Path=InventoryNumber}" Header="Инв. номер" />
         </DataGrid.Columns>
     </DataGrid>
 </UserControl>

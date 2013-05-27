@@ -139,7 +139,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             string name = num.ToString();
             var cartridge = context.Cartridges.First(w => w.Name == name);
-            var cartridgeAccounting = new CartridgeAccounting {Id = Guid.NewGuid(), Cartridge = cartridge, StartDate = date, EndDate = date, IsRefill = true };
+            var cartridgeAccounting = new CartridgeAccounting { Id = Guid.NewGuid(), Cartridge = cartridge, StartDate = date, EndDate = date, IsRefill = true };
             context.CartridgeAccountings.Add(cartridgeAccounting);
             context.SaveChanges();
         }
@@ -149,6 +149,8 @@ namespace Imagio.Helpdesk.ViewModel
             context.CartridgeTypes.Add(new CartridgeType { Id = Guid.NewGuid(), Name = "12A" });
             context.SaveChanges();
             var cartridgeType = context.CartridgeTypes.First();
+
+            #region
 
             var carts = new Dictionary<int, DateTime[]>
                 {
@@ -727,12 +729,98 @@ namespace Imagio.Helpdesk.ViewModel
             foreach (var num in carts)
             {
                 _addCartridge(context, cartridgeType, num.Key);
-                foreach (var dat in num.Value )
+                foreach (var dat in num.Value)
                 {
                     _addAccounting(context, num.Key, dat);
                 }
             }
-            
+
+            #endregion
+
+            #region Сотрудники
+
+            context.Employees.Add(new Employee { Id = Guid.NewGuid(), LastName = "Иванов", FirstName = "Петр", SecondName = "Федорович" });
+            context.Employees.Add(new Employee { Id = Guid.NewGuid(), LastName = "Петров", FirstName = "Иван", SecondName = "Сидорович" });
+            context.Employees.Add(new Employee { Id = Guid.NewGuid(), LastName = "Карлов", FirstName = "Полиграф", SecondName = "Ефремович" });
+            context.Employees.Add(new Employee { Id = Guid.NewGuid(), LastName = "Сидорова", FirstName = "Ольга", SecondName = "Николаевна" });
+            context.Employees.Add(new Employee { Id = Guid.NewGuid(), LastName = "Якушонок", FirstName = "Галина", SecondName = "Георгиевна" });
+            context.SaveChanges();
+
+            #endregion
+
+            #region Производители
+
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Microsoft" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Oracle" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "HP" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Canon" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "LG" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Samsung" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Asus" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Lenovo" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "ABBYY" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Autodesk" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Adobe" });
+            context.Firms.Add(new Firm { Id = Guid.NewGuid(), Name = "Kaspersky" });
+            context.SaveChanges();
+
+            #endregion
+
+            #region Софт
+
+            var microsoft = context.Firms.Single(w => w.Name.Contains("Microsoft"));
+
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = microsoft, Name = "Windows XP", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = microsoft, Name = "Windows Vista", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = microsoft, Name = "Windows 7", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = microsoft, Name = "Windows 8", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = microsoft, Name = "Windows Server 2008 R2", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+
+            var oracle = context.Firms.Single(w => w.Name.Contains("Oracle"));
+
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = oracle, Name = "Java EE", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = oracle, Name = "MySQL Server Enterprise", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+
+            var abbyy = context.Firms.Single(w => w.Name.Contains("ABBYY"));
+            context.Softwares.Add(new Software { Id = Guid.NewGuid(), Maker = abbyy, Name = "FineReader 10.0", InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7) });
+
+            context.SaveChanges();
+
+            #endregion
+
+            #region Тип аппаратного обеспечения
+
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Принтер" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Сканер" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Копир" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Монитор" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Внешний жесткий диск" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "Внешний привод" });
+            context.HardwareTypes.Add(new HardwareType { Id = Guid.NewGuid(), Name = "МФУ" });
+
+            context.SaveChanges();
+
+            #endregion
+
+            #region Устройства
+
+            var scaner = context.HardwareTypes.Single(w => w.Name.Contains("Сканер"));
+            var samsung = context.Firms.Single(w => w.Name.Contains("Samsung"));
+
+            context.Hardwares.Add(new Hardware { Id = Guid.NewGuid(), Name = "ScanJet 300 S2", HardwareType = scaner, Maker = samsung, InventoryNumber = Guid.NewGuid().ToString().Substring(1, 7), StartDate = new DateTime(2012, 04, 1) });
+
+            context.SaveChanges();
+
+            #endregion
+
+            #region Расходники
+
+            context.ConsumableTypes.Add(new ConsumableType { Id = Guid.NewGuid(), Name = "Тонер" });
+            context.ConsumableTypes.Add(new ConsumableType { Id = Guid.NewGuid(), Name = "Фоторецептор" });
+
+            context.SaveChanges();
+
+            #endregion
         }
     }
 }
