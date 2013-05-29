@@ -205,5 +205,18 @@ namespace Imagio.Helpdesk.ViewModel
                 return _reportHistoryMenuCommand;
             }
         }
+
+        private ICommand _reportMoveMenuCommand;
+        public ICommand ReportMoveMenuCommand
+        {
+            get
+            {
+                _reportMoveMenuCommand = _reportMoveMenuCommand ?? new RelayCommand(() =>
+                {
+                    Helper.Report.ReportMove(new HelpdeskContext());
+                });
+                return _reportMoveMenuCommand;
+            }
+        }
     }
 }
