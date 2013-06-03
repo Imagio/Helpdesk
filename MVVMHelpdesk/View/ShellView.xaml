@@ -134,6 +134,11 @@
                         <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/help.png" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Header="О программе" Command="{Binding Path=AboutMenuCommand}">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="/MVVMHelpdesk;component/Images/help.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <ContentControl Grid.Row="1" Content="{Binding CurrentTab.ViewModel}" Margin="10 2">

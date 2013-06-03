@@ -173,10 +173,24 @@ namespace Imagio.Helpdesk.ViewModel
             {
                 _helpMenuCommand = _helpMenuCommand ?? new RelayCommand(() =>
                 {
-                    var about = new Imagio.Helpdesk.View.AboutView();
+                    var about = new Imagio.Helpdesk.View.HelpView();
                     about.ShowDialog();
                 });
                 return _helpMenuCommand;
+            }
+        }
+
+        private ICommand _aboutMenuCommand;
+        public ICommand AboutMenuCommand
+        {
+            get
+            {
+                _aboutMenuCommand = _aboutMenuCommand ?? new RelayCommand(() =>
+                {
+                    var about = new Imagio.Helpdesk.View.AboutView();
+                    about.ShowDialog();
+                });
+                return _aboutMenuCommand;
             }
         }
 

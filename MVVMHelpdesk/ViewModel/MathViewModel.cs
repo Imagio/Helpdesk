@@ -269,6 +269,14 @@ namespace Imagio.Helpdesk.ViewModel
             var db = new DateTime(DateBegin.Year, DateBegin.Month, 1);
 
             cnvs.Children.Clear();
+
+            var lab = new System.Windows.Controls.TextBlock { Text = "Количество заправок" };
+            System.Windows.Controls.Canvas.SetLeft(lab, -20);
+            System.Windows.Controls.Canvas.SetTop(lab, 220);
+            lab.UseLayoutRounding = false;
+            lab.RenderTransform = new System.Windows.Media.RotateTransform(270);
+            cnvs.Children.Add(lab);
+
             for (int i = 0; i < nn; i++)
             {
                 {
@@ -284,6 +292,21 @@ namespace Imagio.Helpdesk.ViewModel
                     System.Windows.Controls.Canvas.SetLeft(t, x + 5);
                     System.Windows.Controls.Canvas.SetTop(t, y - 2);
                     cnvs.Children.Add(t);
+
+                    if (i > 0)
+                    {
+                        var l = new System.Windows.Shapes.Line { Stroke = System.Windows.Media.Brushes.Navy };
+                        l.X1 = x + 2;
+                        l.Y1 = y + 2;
+
+                        var xt = (int)((numX[i - 1] - xMin) * kX + 10) - 2;
+                        var yt = (int)(300 - ((numY[i - 1] - yMin) * kY + 10)) - 2;
+
+                        l.X2 = xt + 2;
+                        l.Y2 = yt + 2;
+                        cnvs.Children.Add(l);
+
+                    }
 
                     var m = new System.Windows.Controls.TextBlock { Text = months[db.Month] };
                     System.Windows.Controls.Canvas.SetLeft(m, x + 5);

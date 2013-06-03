@@ -1,0 +1,8 @@
+﻿<Window x:Class="Imagio.Helpdesk.View.HelpView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Справка" Height="480" Width="640" Loaded="Window_Loaded" WindowState="Maximized">
+    <DocumentViewer x:Name="dv">
+        
+    </DocumentViewer>
+</Window>
