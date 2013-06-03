@@ -74,7 +74,7 @@ namespace Imagio.Helpdesk.ViewModel
         {
             get
             {
-                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Software>("Список прогрммного обеспечения"));
+                _softwareMenuCommand = _softwareMenuCommand ?? new RelayCommand(() => _addEntityTab<Software>("Список программного обеспечения"));
                 return _softwareMenuCommand;
             }
         }
